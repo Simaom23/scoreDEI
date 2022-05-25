@@ -4,20 +4,13 @@
 <head th:replace="layout :: head" />
 
 <body>
-    <form th:action="@{/saveProfessor}" th:object="${professor}" method="post">
-        <div="form-row">
-            <div>
-                <input type="hidden" th:field="*{id}">
-            </div>
-            <div>
-                <label>Name</label>
-                <input type="text" th:field="*{name}">
-            </div>
-            <div>
-                <label>Office</label>
-                <input type="text" th:field="*{office}">
-            </div>
-            <button type="submit">Edit/Create Professor</button>
-            </div>
+    <form method="post" th:action="@{/saveTeam}" th:object="${team}">
+        <div class="form-group">
+            <label for="Name">Team name</label>
+            <input required type="text" id="name" class="form-control" placeholder="Enter team name" th:field="*{name}">
+        </div>
+        <button type="submit" class="btn btn-primary">Create Team</button>
     </form>
 </body>
+
+</html>

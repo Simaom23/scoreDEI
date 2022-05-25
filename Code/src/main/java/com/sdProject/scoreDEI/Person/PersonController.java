@@ -1,4 +1,4 @@
-package com.sdProject.scoreDEI.User;
+package com.sdProject.scoreDEI.Person;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.ui.Model;
 
 @Controller
-public class UserController {
+public class PersonController {
     @Autowired
-    UserService userService;
+    PersonService personService;
 
     @GetMapping("/")
     public String redirect() {
@@ -29,14 +29,14 @@ public class UserController {
 
     @GetMapping("/createUser")
     public String createUser(Model model) {
-        model.addAttribute("user", new User());
-        return "addUser";
+        model.addAttribute("user", new Person());
+        return "createUser";
     }
 
     @PostMapping("/saveUser")
-    public String saveUser(@ModelAttribute User user, Model model) {
-        model.addAttribute("user", user);
-        this.userService.addUser(user);
+    public String saveUser(@ModelAttribute Person person, Model model) {
+        model.addAttribute("person", person);
+        this.personService.addPerson(person);
         return "redirect:/login";
     }
 }

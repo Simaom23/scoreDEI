@@ -1,25 +1,31 @@
 package com.sdProject.scoreDEI.Player;
 
+import java.sql.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import com.sdProject.scoreDEI.Team.Team;
 
 @Entity
 public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private String name, position, birhtDate;
-    private int team;
+    private String name, position;
+    Date birthDate;
+    @ManyToOne
+    private Team team;
 
     public Player() {
     }
 
-    public Player(String name, String position, String birthDate, int team) {
+    public Player(String name, String position, Date birthDate, Team team) {
         this.name = name;
         this.position = position;
-        this.birhtDate = birthDate;
+        this.birthDate = birthDate;
         this.team = team;
     }
 
@@ -47,19 +53,19 @@ public class Player {
         this.position = position;
     }
 
-    public String getBirthDate() {
-        return birhtDate;
+    public Date getBirthDate() {
+        return birthDate;
     }
 
-    public void setBirthDate(String birthDate) {
-        this.birhtDate = birthDate;
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 
-    public int getTeam() {
+    public Team getTeam() {
         return team;
     }
 
-    public void setTeam(int team) {
+    public void setTeam(Team team) {
         this.team = team;
     }
 }

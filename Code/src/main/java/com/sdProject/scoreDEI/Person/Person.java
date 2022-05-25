@@ -1,4 +1,4 @@
-package com.sdProject.scoreDEI.User;
+package com.sdProject.scoreDEI.Person;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,16 +6,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class User {
+public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name, email, telephone, password, role;
 
-    public User() {
+    public Person() {
     }
 
-    public User(String name, String email, String telephone, String password, String role) {
+    public Person(String name, String email, String telephone, String password, String role) {
         this.name = name;
         this.email = email;
         this.telephone = telephone;

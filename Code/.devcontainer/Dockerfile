@@ -56,6 +56,5 @@ ENV ZSH_THEME robbyrussell
 #  RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
 RUN sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-
 # start zsh
 CMD [ "zsh" ]

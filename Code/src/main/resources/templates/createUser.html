@@ -5,7 +5,7 @@
 <head th:replace="layout :: head" />
 
 <body>
-    <form method="post" th:action="@{/saveUser}" th:object="${user}">
+    <form method="post" th:action="@{/saveUser/}" th:object="${user}">
         <div class="form-group">
             <label for="Name">Name</label>
             <input required type="text" id="name" class="form-control" placeholder="Enter user name" th:field="*{name}">

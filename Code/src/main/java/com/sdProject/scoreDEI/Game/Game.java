@@ -1,9 +1,13 @@
 package com.sdProject.scoreDEI.Game;
 
+import java.sql.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import com.sdProject.scoreDEI.Team.Team;
 
 @Entity
 public class Game {
@@ -11,12 +15,17 @@ public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private String homeTeam, awayTeam, location, date;
+    @ManyToOne
+    private Team homeTeam;
+    @ManyToOne
+    private Team awayTeam;
+    private String location;
+    Date date;
 
     public Game() {
     }
 
-    public Game(String homeTeam, String awayTeam, String location, String date) {
+    public Game(Team homeTeam, Team awayTeam, String location, Date date) {
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.location = location;
@@ -31,19 +40,19 @@ public class Game {
         this.id = id;
     }
 
-    public String getHomeTeam() {
+    public Team getHomeTeam() {
         return homeTeam;
     }
 
-    public void setHomeTeam(String homeTeam) {
+    public void setHomeTeam(Team homeTeam) {
         this.homeTeam = homeTeam;
     }
 
-    public String getAwayTeam() {
+    public Team getAwayTeam() {
         return awayTeam;
     }
 
-    public void setAwayTeam(String awayTeam) {
+    public void setAwayTeam(Team awayTeam) {
         this.awayTeam = awayTeam;
     }
 
@@ -55,11 +64,11 @@ public class Game {
         this.location = location;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 }

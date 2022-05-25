@@ -13,20 +13,20 @@ public class TeamController {
     TeamService teamService;
 
     @GetMapping("/createTeam")
-    public String createUser(Model model) {
+    public String createTeam(Model model) {
         Team[] teams = {
-                new Team("José"),
-                new Team("Paulo"),
-                new Team("Estrela")
+                new Team("Sporting CP"),
+                new Team("SL Benfica"),
+                new Team("FC Porto")
         };
         for (Team team : teams)
             this.teamService.addTeam(team);
-        model.addAttribute("user", new Team());
-        return "addTeam";
+        model.addAttribute("team", new Team());
+        return "createTeam";
     }
 
     @PostMapping("/saveTeam")
-    public String saveUser(@ModelAttribute Team team, Model model) {
+    public String saveTeam(@ModelAttribute Team team, Model model) {
         model.addAttribute("team", team);
         this.teamService.addTeam(team);
         return "redirect:/homepage";
