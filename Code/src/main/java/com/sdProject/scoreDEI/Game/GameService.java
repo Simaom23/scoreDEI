@@ -9,7 +9,7 @@ public class GameService {
     @Autowired
     private GameRepository gameRepository;
 
-    public void addUser(Game game) {
+    public void addGame(Game game) {
         gameRepository.save(game);
     }
 }

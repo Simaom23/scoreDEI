@@ -21,7 +21,7 @@ public class GameController {
     @PostMapping("/saveGame")
     public String saveUser(@ModelAttribute Game game, Model model) {
         model.addAttribute("game", game);
-        this.gameService.addUser(game);
+        this.gameService.addGame(game);
         return "redirect:/homepage";
     }
 }

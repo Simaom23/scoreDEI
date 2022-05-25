@@ -9,7 +9,7 @@ public class TeamService {
     @Autowired
     private TeamRepository teamRepository;
 
-    public void addUser(Team team) {
+    public void addTeam(Team team) {
         teamRepository.save(team);
     }
 }

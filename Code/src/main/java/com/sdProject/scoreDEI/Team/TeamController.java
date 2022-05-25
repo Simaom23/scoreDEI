@@ -14,6 +14,13 @@ public class TeamController {
 
     @GetMapping("/createTeam")
     public String createUser(Model model) {
+        Team[] teams = {
+                new Team("José"),
+                new Team("Paulo"),
+                new Team("Estrela")
+        };
+        for (Team team : teams)
+            this.teamService.addTeam(team);
         model.addAttribute("user", new Team());
         return "addTeam";
     }
@@ -21,7 +28,7 @@ public class TeamController {
     @PostMapping("/saveTeam")
     public String saveUser(@ModelAttribute Team team, Model model) {
         model.addAttribute("team", team);
-        this.teamService.addUser(team);
+        this.teamService.addTeam(team);
         return "redirect:/homepage";
     }
 }

@@ -9,7 +9,7 @@ public class PlayerService {
     @Autowired
     private PlayerRepository playerRepository;
 
-    public void addUser(Player player) {
+    public void addPlayer(Player player) {
         playerRepository.save(player);
     }
 }
