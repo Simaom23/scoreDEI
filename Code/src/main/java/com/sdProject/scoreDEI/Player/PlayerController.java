@@ -14,13 +14,13 @@ public class PlayerController {
 
     @GetMapping("/createPlayer")
     public String createUser(Model model) {
-        model.addAttribute("user", new Player());
+        model.addAttribute("player", new Player());
         return "addPlayer";
     }
 
     @PostMapping("/savePlayer")
     public String saveUser(@ModelAttribute Player player, Model model) {
-        model.addAttribute("user", player);
+        model.addAttribute("player", player);
         this.playerService.addUser(player);
         return "redirect:/homepage";
     }

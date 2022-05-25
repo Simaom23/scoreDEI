@@ -14,7 +14,7 @@ public class GameController {
 
     @GetMapping("/createGame")
     public String createUser(Model model) {
-        model.addAttribute("user", new Game());
+        model.addAttribute("game", new Game());
         return "addGame";
     }
 
