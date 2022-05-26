@@ -31,4 +31,10 @@ public class TeamController {
         this.teamService.addTeam(team);
         return "redirect:/homepage";
     }
+
+    @GetMapping("/listTeams")
+    public String listPlayer(Model model) {
+        model.addAttribute("teams", this.teamService.getAllTeams());
+        return "listTeams";
+    }
 }

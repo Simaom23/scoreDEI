@@ -29,4 +29,10 @@ public class GameController {
         this.gameService.addGame(game);
         return "redirect:/homepage";
     }
+
+    @GetMapping("/listGames")
+    public String listPlayer(Model model) {
+        model.addAttribute("games", this.gameService.getAllGames());
+        return "listGames";
+    }
 }

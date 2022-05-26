@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+
+<head th:replace="layout :: head" />
+
+<body>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">User Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Password</th>
+                <th scope="col">Telephone</th>
+                <th scope="col">Edit/Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.name}">name</td>
+                <td th:text="${user.email}">position</td>
+                <td th:text="${user.password}">birthDate</td>
+                <td th:text="${user.telephone}">team</td>
+                <td>
+                    <form method="get" th:action="@{/editUser}" th:object="${user}">
+                        <button type="submit" class="btn btn-primary">Edit/Delete</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+
+</html>

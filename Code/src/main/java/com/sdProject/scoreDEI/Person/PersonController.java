@@ -33,10 +33,22 @@ public class PersonController {
         return "createUser";
     }
 
+    @GetMapping("/manageUser")
+    public String editUser(Model model) {
+        model.addAttribute("user", new Person());
+        return "manageUser";
+    }
+
     @PostMapping("/saveUser")
     public String saveUser(@ModelAttribute Person person, Model model) {
         model.addAttribute("person", person);
         this.personService.addPerson(person);
         return "redirect:/login";
+    }
+
+    @GetMapping("/listUsers")
+    public String listUser(Model model) {
+        model.addAttribute("users", this.personService.getAllUsers());
+        return "listUsers";
     }
 }

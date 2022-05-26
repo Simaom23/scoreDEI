@@ -17,16 +17,22 @@ public class PlayerController {
     TeamService teamService;
 
     @GetMapping("/createPlayer")
-    public String createTeam(Model model) {
+    public String createPlayer(Model model) {
         model.addAttribute("player", new Player());
         model.addAttribute("allTeams", this.teamService.getAllTeams());
         return "createPlayer";
     }
 
     @PostMapping("/savePlayer")
-    public String saveTeam(@ModelAttribute Player player, Model model) {
+    public String savePlayer(@ModelAttribute Player player, Model model) {
         model.addAttribute("player", player);
         this.playerService.addPlayer(player);
         return "redirect:/homepage";
+    }
+
+    @GetMapping("/listPlayers")
+    public String listPlayer(Model model) {
+        model.addAttribute("players", this.playerService.getAllPlayers());
+        return "listPlayers";
     }
 }
