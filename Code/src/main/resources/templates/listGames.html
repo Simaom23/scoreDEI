@@ -5,6 +5,7 @@
 <head th:replace="layout :: head" />
 
 <body>
+    <nav th:replace="layout :: nav" />
     <table class="table">
         <thead class="thead-dark">
             <tr>
@@ -12,7 +13,7 @@
                 <th scope="col">Away Team</th>
                 <th scope="col">Location</th>
                 <th scope="col">Date</th>
-                <th scope="col">Edit/Delete</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
@@ -22,9 +23,7 @@
                 <td th:text="${game.location}">location</td>
                 <td th:text="${game.date}">date</td>
                 <td>
-                    <form method="get" th:action="@{/editGame}" th:object="${game}">
-                        <button type="submit" class="btn btn-primary">Edit/Delete</button>
-                    </form>
+                    <a th:href="@{manageGame(id=${game.id})}" class="btn btn-primary">Edit/Delete</a>
                 </td>
             </tr>
         </tbody>

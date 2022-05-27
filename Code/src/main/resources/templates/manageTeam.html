@@ -4,7 +4,11 @@
 <head th:replace="layout :: head" />
 
 <body>
+    <nav th:replace="layout :: nav" />
     <form method="post" th:action="@{/saveTeam}" th:object="${team}">
+        <div>
+            <input type="hidden" th:field="*{id}">
+        </div>
         <div class="form-group">
             <label for="Name">Team name</label>
             <input required type="text" id="name" class="form-control" placeholder="Enter team name" th:field="*{name}">
@@ -12,6 +16,9 @@
         <button type="submit" class="btn btn-primary">Edit Team</button>
     </form>
     <form method="post" th:action="@{/deleteTeam}" th:object="${team}">
+        <div>
+            <input type="hidden" th:field="*{id}">
+        </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Delete Team</button>
         </div>

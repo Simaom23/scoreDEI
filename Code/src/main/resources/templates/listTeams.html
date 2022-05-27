@@ -5,20 +5,19 @@
 <head th:replace="layout :: head" />
 
 <body>
+    <nav th:replace="layout :: nav" />
     <table class="table">
         <thead class="thead-dark">
             <tr>
                 <th scope="col">Team</th>
-                <th scope="col">Edit/Delete</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="team : ${teams}">
                 <td th:text="${team.name}">team</td>
                 <td>
-                    <form method="get" th:action="@{/editTeam}" th:object="${team}">
-                        <button type="submit" class="btn btn-primary">Edit/Delete</button>
-                    </form>
+                    <a th:href="@{manageTeam(id=${team.id})}" class="btn btn-primary">Edit/Delete</a>
                 </td>
             </tr>
         </tbody>

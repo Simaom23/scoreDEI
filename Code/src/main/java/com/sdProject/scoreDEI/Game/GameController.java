@@ -5,7 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
+
+import java.util.Optional;
+
 import com.sdProject.scoreDEI.Team.TeamService;
 
 @Controller
@@ -23,11 +27,29 @@ public class GameController {
         return "createGame";
     }
 
+    @GetMapping("/manageGame")
+    public String manageGame(@RequestParam(name = "id", required = true) int id, Model model) {
+        Optional<Game> op = this.gameService.getGame(id);
+        if (op.isPresent()) {
+            model.addAttribute("game", op.get());
+            model.addAttribute("allTeams", this.teamService.getAllTeams());
+            return "manageGame";
+        } else {
+            return "redirect:/listGames";
+        }
+    }
+
     @PostMapping("/saveGame")
     public String saveTeam(@ModelAttribute Game game, Model model) {
         model.addAttribute("game", game);
         this.gameService.addGame(game);
-        return "redirect:/homepage";
+        return "redirect:/listGames";
+    }
+
+    @PostMapping("/deleteGame")
+    public String deleteGame(@ModelAttribute Game game) {
+        this.gameService.deleteGame(game);
+        return "redirect:/listGames";
     }
 
     @GetMapping("/listGames")

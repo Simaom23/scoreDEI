@@ -1,10 +1,13 @@
 package com.sdProject.scoreDEI.Person;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
 
 @Controller
@@ -34,16 +37,26 @@ public class PersonController {
     }
 
     @GetMapping("/manageUser")
-    public String editUser(Model model) {
-        model.addAttribute("user", new Person());
-        return "manageUser";
+    public String manageUser(@RequestParam(name = "id", required = true) int id, Model model) {
+        Optional<Person> op = this.personService.getPerson(id);
+        if (op.isPresent()) {
+            model.addAttribute("user", op.get());
+            return "manageUser";
+        } else {
+            return "redirect:/listUsers";
+        }
     }
 
     @PostMapping("/saveUser")
-    public String saveUser(@ModelAttribute Person person, Model model) {
-        model.addAttribute("person", person);
+    public String saveUser(@ModelAttribute Person person) {
         this.personService.addPerson(person);
-        return "redirect:/login";
+        return "redirect:/listUsers";
+    }
+
+    @PostMapping("/deleteUser")
+    public String deleteUser(@ModelAttribute Person person) {
+        this.personService.deletePerson(person);
+        return "redirect:/listUsers";
     }
 
     @GetMapping("/listUsers")

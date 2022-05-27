@@ -5,7 +5,11 @@
 <head th:replace="layout :: head" />
 
 <body>
+    <nav th:replace="layout :: nav" />
     <form method="post" th:action="@{/saveUser}" th:object="${user}">
+        <div>
+            <input type="hidden" th:field="*{id}">
+        </div>
         <div class="form-group">
             <label for="Name">Name</label>
             <input required type="text" id="name" class="form-control" placeholder="Enter user name" th:field="*{name}">
@@ -22,7 +26,7 @@
         </div>
         <div class=" form-group">
             <label for="Password">Password</label>
-            <input required type="password" id="password" class="form-control" placeholder="Enter user password"
+            <input required type="text" id="password" class="form-control" placeholder="Enter user password"
                 th:field="*{password}">
         </div>
         <div class=" form-group">
@@ -36,6 +40,9 @@
         <button type="submit" class="btn btn-primary">Edit User</button>
     </form>
     <form method="post" th:action="@{/deleteUser}" th:object="${user}">
+        <div>
+            <input type="hidden" th:field="*{id}">
+        </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Delete User</button>
         </div>

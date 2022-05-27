@@ -1,6 +1,7 @@
 package com.sdProject.scoreDEI.Game;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,14 @@ public class GameService {
 
     public void addGame(Game game) {
         gameRepository.save(game);
+    }
+
+    public Optional<Game> getGame(int id) {
+        return gameRepository.findById(id);
+    }
+
+    public void deleteGame(Game game) {
+        gameRepository.delete(game);
     }
 
     public List<Game> getAllGames() {

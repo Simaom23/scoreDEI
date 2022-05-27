@@ -5,26 +5,25 @@
 <head th:replace="layout :: head" />
 
 <body>
+    <nav th:replace="layout :: nav" />
     <table class="table">
         <thead class="thead-dark">
             <tr>
                 <th scope="col">Player Name</th>
+                <th scope="col">Team</th>
                 <th scope="col">Position</th>
                 <th scope="col">Birth Date</th>
-                <th scope="col">Team</th>
-                <th scope="col">Edit/Delete</th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="player : ${players}">
                 <td th:text="${player.name}">name</td>
+                <td th:text="${player.team.name}">team</td>
                 <td th:text="${player.position}">position</td>
                 <td th:text="${player.birthDate}">birthDate</td>
-                <td th:text="${player.team.name}">team</td>
                 <td>
-                    <form method="get" th:action="@{/editPlayer}" th:object="${player}">
-                        <button type="submit" class="btn btn-primary">Edit/Delete</button>
-                    </form>
+                    <a th:href="@{managePlayer(id=${player.id})}" class="btn btn-primary">Edit/Delete</a>
                 </td>
             </tr>
         </tbody>

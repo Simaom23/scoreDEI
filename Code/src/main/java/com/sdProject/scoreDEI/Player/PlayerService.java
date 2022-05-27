@@ -1,6 +1,7 @@
 package com.sdProject.scoreDEI.Player;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,14 @@ public class PlayerService {
 
     public void addPlayer(Player player) {
         playerRepository.save(player);
+    }
+
+    public void deletePlayer(Player player) {
+        playerRepository.delete(player);
+    }
+
+    public Optional<Player> getPlayer(int id) {
+        return playerRepository.findById(id);
     }
 
     public List<Player> getAllPlayers() {

@@ -1,6 +1,7 @@
 package com.sdProject.scoreDEI.Team;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,14 @@ public class TeamService {
 
     public void addTeam(Team team) {
         teamRepository.save(team);
+    }
+
+    public void deleteTeam(Team team) {
+        teamRepository.delete(team);
+    }
+
+    public Optional<Team> getTeam(int id) {
+        return teamRepository.findById(id);
     }
 
     public List<Team> getAllTeams() {
