@@ -17,7 +17,7 @@ public class PersonController {
 
     @GetMapping("/")
     public String redirect() {
-        return "redirect:/login";
+        return "redirect:/homepage";
     }
 
     @GetMapping("/login")
