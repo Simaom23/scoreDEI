@@ -5,4 +5,32 @@
 
 <body>
     <nav th:replace="layout :: nav" />
+    <table class="table table-hover table-dark">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Home Flag</th>
+                <th scope="col">Home Team</th>
+                <th scope="col">Home Goals</th>
+                <th scope="col">Away Goals</th>
+                <th scope="col">Away Team</th>
+                <th scope="col">Away Flag</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="game : ${games}">
+                <td>
+                    <a th:href="@{gameStats(id=${game.id})}" class="btn btn-primary">See</a>
+                </td>
+                <td>Flag</td>
+                <td th:text="${game.homeTeam.name}">Home Team</td>
+                <td>0</td>
+                <td>0</td>
+                <td th:text="${game.awayTeam.name}">Away Team</td>
+                <td>Flag</td>
+            </tr>
+        </tbody>
+    </table>
 </body>
+
+</html>

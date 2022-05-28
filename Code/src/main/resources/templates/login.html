@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: head" />
+
+<body>
+    <form th:action="@{/homepage}" method="post">
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+            <input type="text" id="email" class="form-control" />
+            <label class="form-label" for="email">Email address</label>
+        </div>
+
+        <!-- Password input -->
+        <div class="form-outline mb-4">
+            <input type="password" id="password" class=" form-control" />
+            <label class="form-label" for="password">Password</label>
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+    </form>
+    <div class="text-center">
+        <p><a th:href="@{/homepage}">Enter without account!</a></p>
+    </div>
+</body>
+
+</html>

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
 
@@ -15,19 +17,14 @@ public class PersonController {
     @Autowired
     PersonService personService;
 
-    @GetMapping("/")
+    @RequestMapping(value = { "/", "", "/index" }, method = RequestMethod.GET)
     public String redirect() {
-        return "redirect:/homepage";
+        return "redirect:/login";
     }
 
     @GetMapping("/login")
     public String login() {
         return "login";
-    }
-
-    @GetMapping("/homepage")
-    public String homepage() {
-        return "homepage";
     }
 
     @GetMapping("/createUser")
@@ -38,7 +35,7 @@ public class PersonController {
 
     @GetMapping("/manageUser")
     public String manageUser(@RequestParam(name = "id", required = true) int id, Model model) {
-        Optional<Person> op = this.personService.getPerson(id);
+        Optional<Person> op = this.personService.getPersonById(id);
         if (op.isPresent()) {
             model.addAttribute("user", op.get());
             return "manageUser";

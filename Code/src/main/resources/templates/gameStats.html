@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout :: head" />
+
+<body>
+    <nav th:replace="layout :: nav" />
+    <table class="table table-borderless table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Home Flag</th>
+                <th scope="col" th:text="${game.homeTeam.name}">Home Team</th>
+                <th scope="col">0</th>
+                <th scope="col">0</th>
+                <th scope="col" th:text="${game.awayTeam.name}">Away Team</th>
+                <th scope="col">Away Flag</th>
+            </tr>
+        </thead>
+    </table>
+
+    <table class="table table-borderless table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Home Team</th>
+                <th scope="col">Away Team</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Yellow Card</td>
+                <td>Goal</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>

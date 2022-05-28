@@ -25,6 +25,10 @@ public class GameService {
         gameRepository.delete(game);
     }
 
+    public Optional<Game> getGameById(int id) {
+        return gameRepository.findById(id);
+    }
+
     public List<Game> getAllGames() {
         List<Game> games = new ArrayList<>();
         gameRepository.findAll().forEach(games::add);

@@ -18,6 +18,7 @@ public class Player {
     Date birthDate;
     @ManyToOne
     private Team team;
+    private int goals;
 
     public Player() {
     }
@@ -27,6 +28,7 @@ public class Player {
         this.position = position;
         this.birthDate = birthDate;
         this.team = team;
+        this.goals = 0;
     }
 
     public int getId() {
@@ -67,5 +69,13 @@ public class Player {
 
     public void setTeam(Team team) {
         this.team = team;
+    }
+
+    public int getGoals() {
+        return goals;
+    }
+
+    public void setGoals(int goals) {
+        this.goals = goals;
     }
 }

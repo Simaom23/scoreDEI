@@ -21,7 +21,7 @@ public class PersonService {
         personRepository.delete(person);
     }
 
-    public Optional<Person> getPerson(int id) {
+    public Optional<Person> getPersonById(int id) {
         return personRepository.findById(id);
     }
 

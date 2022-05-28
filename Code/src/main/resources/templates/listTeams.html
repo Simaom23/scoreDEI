@@ -1,6 +1,5 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<html>
 
 <head th:replace="layout :: head" />
 
@@ -10,12 +9,20 @@
         <thead class="thead-dark">
             <tr>
                 <th scope="col">Team</th>
+                <th scope="col">Games Played</th>
+                <th scope="col">Wins</th>
+                <th scope="col">Defeats</th>
+                <th scope="col">Losses</th>
                 <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="team : ${teams}">
                 <td th:text="${team.name}">team</td>
+                <td th:text="${team.games}">games</td>
+                <td th:text="${team.victories}">victories</td>
+                <td th:text="${team.draws}">defeats</td>
+                <td th:text="${team.losses}">losses</td>
                 <td>
                     <a th:href="@{manageTeam(id=${team.id})}" class="btn btn-primary">Edit/Delete</a>
                 </td>
