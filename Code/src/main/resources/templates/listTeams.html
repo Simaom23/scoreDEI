@@ -20,8 +20,8 @@
             <tr th:each="team : ${teams}">
                 <td th:text="${team.name}">team</td>
                 <td th:text="${team.games}">games</td>
-                <td th:text="${team.victories}">victories</td>
-                <td th:text="${team.draws}">defeats</td>
+                <td th:text="${team.wins}">victories</td>
+                <td th:text="${team.defeats}">defeats</td>
                 <td th:text="${team.losses}">losses</td>
                 <td>
                     <a th:href="@{manageTeam(id=${team.id})}" class="btn btn-primary">Edit/Delete</a>

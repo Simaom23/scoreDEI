@@ -1,6 +1,7 @@
 package com.sdProject.scoreDEI.Game;
 
 import java.sql.Date;
+import java.sql.Time;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,15 +22,17 @@ public class Game {
     private Team awayTeam;
     private String location;
     Date date;
+    Time time;
 
     public Game() {
     }
 
-    public Game(Team homeTeam, Team awayTeam, String location, Date date) {
+    public Game(Team homeTeam, Team awayTeam, String location, Date date, Time time) {
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.location = location;
         this.date = date;
+        this.time = time;
     }
 
     public int getId() {
@@ -70,5 +73,13 @@ public class Game {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Time getTime() {
+        return time;
+    }
+
+    public void setTime(Time time) {
+        this.time = time;
     }
 }

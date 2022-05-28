@@ -21,7 +21,7 @@
                 <td th:text="${game.homeTeam.name}">homeTeam</td>
                 <td th:text="${game.awayTeam.name}">awayTeam</td>
                 <td th:text="${game.location}">location</td>
-                <td th:text="${game.date}">date</td>
+                <td th:text="${game.date + ' ' + game.time}">date</td>
                 <td>
                     <a th:href="@{manageGame(id=${game.id})}" class="btn btn-primary">Edit/Delete</a>
                 </td>
