@@ -11,8 +11,4 @@ public class EventController {
     @Autowired
     EventService eventService;
     
-    @GetMapping("/event") 
-    public String event(Model model){
-        return "event";
-    }
 }
