@@ -11,6 +11,7 @@
                 <th scope="col">Home Flag</th>
                 <th scope="col" th:text="${game.homeTeam.name}">Home Team</th>
                 <th scope="col">0</th>
+                <th scope="col" th:text="${game.date + ' ' + game.time}">Date and Time</th>
                 <th scope="col">0</th>
                 <th scope="col" th:text="${game.awayTeam.name}">Away Team</th>
                 <th scope="col">Away Flag</th>
@@ -20,19 +21,22 @@
 
     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
         <div class="btn-group" role="group" aria-label="First group">
-            <button type="button" class="btn btn-secondary">Game Started/Ended</button>
+            <a th:href="@{registerEvent(id=${game.id}, eventType=${'Start'})}" class="btn btn-primary">Game
+                Started/Ended</a>
         </div>
         <div class="btn-group" role="group" aria-label="Second group">
-            <button type="button" class="btn btn-secondary">Goal</button>
+            <a th:href="@{registerEvent(id=${game.id}, eventType=${'Goal'})}" class="btn btn-primary">Goal</a>
         </div>
         <div class="btn-group" role="group" aria-label="Second group">
-            <button type="button" class="btn btn-secondary">Yellow Card</button>
+            <a th:href="@{registerEvent(id=${game.id}, eventType=${'Yellow%20Card'})}" class="btn btn-primary">Yellow
+                Card</a>
         </div>
         <div class="btn-group" role="group" aria-label="Second group">
-            <button type="button" class="btn btn-secondary">Red Card</button>
+            <a th:href="@{registerEvent(id=${game.id}, eventType=${'Red%20Card'})}" class="btn btn-primary">Red Card</a>
         </div>
         <div class="btn-group" role="group" aria-label="Second group">
-            <button type="button" class="btn btn-secondary">Game Interrupted/Resumed</button>
+            <a th:href="@{registerEvent(id=${game.id}, eventType=${'Interrupted'})}" class="btn btn-primary">Game
+                Interrupted/Resumed</a>
         </div>
     </div>
 

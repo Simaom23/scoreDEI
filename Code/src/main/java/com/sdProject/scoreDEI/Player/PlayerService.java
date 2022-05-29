@@ -2,6 +2,7 @@ package com.sdProject.scoreDEI.Player;
 
 import java.util.List;
 import java.util.Optional;
+
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,4 +31,5 @@ public class PlayerService {
         playerRepository.findAll().forEach(players::add);
         return players;
     }
+
 }
