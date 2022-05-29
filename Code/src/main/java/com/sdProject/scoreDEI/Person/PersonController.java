@@ -3,6 +3,7 @@ package com.sdProject.scoreDEI.Person;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Admin;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -24,6 +25,18 @@ public class PersonController {
 
     @GetMapping("/login")
     public String login() {
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public String login(@RequestParam String email, @RequestParam String password, Model model) {
+        Optional<Person> op = this.personService.authenticatePerson(email, password);
+
+        if (op.isPresent()) {
+            if (op.get().getPassword().equals(password))
+                return "redirect:/homepage";
+        }
+
         return "login";
     }
 

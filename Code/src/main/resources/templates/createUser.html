@@ -29,8 +29,8 @@
             <label for="Role">Role</label>
             <select class="form-control" id="role" required th:field="*{role}">
                 <option value="" selected disabled>Select a role</option>
-                <option value="User">User</option>
-                <option value="Admin">Admin</option>
+                <option value="false">User</option>
+                <option value="true">Admin</option>
             </select>
         </div>
         <button type="submit" class="btn btn-primary">Create User</button>

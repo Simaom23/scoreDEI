@@ -13,18 +13,17 @@ public class Person {
     private int id;
     @Column(unique = true)
     private String email;
-    private String name, telephone, password, role;
-    private boolean active;
+    private String name, telephone, password;
+    private boolean role;
 
     public Person() {
     }
 
-    public Person(String name, String email, String telephone, String password, boolean active, String role) {
+    public Person(String name, String email, String telephone, String password, boolean active, Boolean role) {
         this.name = name;
         this.email = email;
         this.telephone = telephone;
         this.password = password;
-        this.active = active;
         this.role = role;
     }
 
@@ -56,7 +55,7 @@ public class Person {
         return password;
     }
 
-    public void getPassword(String password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
@@ -68,19 +67,11 @@ public class Person {
         this.telephone = telephone;
     }
 
-    public boolean getActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    public String getRole() {
+    public Boolean getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Boolean role) {
         this.role = role;
     }
 }

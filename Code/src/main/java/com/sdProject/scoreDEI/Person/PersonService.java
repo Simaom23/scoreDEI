@@ -21,6 +21,12 @@ public class PersonService {
         personRepository.delete(person);
     }
 
+    public Optional<Person> authenticatePerson(String email, String password) {
+        Optional<Person> p = personRepository.authenticate(email);
+
+        return p;
+    }
+
     public Optional<Person> getPersonById(int id) {
         return personRepository.findById(id);
     }
