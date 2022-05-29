@@ -35,8 +35,8 @@ public class EventController {
             Game game = op.get();
             model.addAttribute("game", game);
             model.addAttribute("event", eventType);
-            model.addAttribute("awayTeamPlayers", this.playerService.getTeamPlayers(game.getHomeTeam().getId()));
-            model.addAttribute("homeTeamPlayers", this.playerService.getTeamPlayers(game.getAwayTeam().getId()));
+            model.addAttribute("awayTeamPlayers", this.playerService.getTeamPlayers(game.getHomeTeam()));
+            model.addAttribute("homeTeamPlayers", this.playerService.getTeamPlayers(game.getAwayTeam()));
             return "registerEvent";
         } else {
             return "redirect:/gameStats?id=" + id;

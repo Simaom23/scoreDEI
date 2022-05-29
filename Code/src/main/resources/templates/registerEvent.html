@@ -10,8 +10,8 @@
             <label for="Team">Team</label>
             <select class="form-control" id="team" required th:field="*{team}">
                 <option value="" selected disabled>Select team</option>
-                <option th:value="${{game.homeTeam}}" th:text="${game.homeTeam.name}" />
-                <option th:value="${{team.awayTeam}}" th:text="${game.awayTeam.name}" />
+                <option th:value="${{game.homeTeam.id}}" th:text="${game.homeTeam.name}" />
+                <option th:value="${{game.awayTeam.id}}" th:text="${game.awayTeam.name}" />
             </select>
         </div>
         <div class=" form-group">
