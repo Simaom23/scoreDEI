@@ -30,4 +30,10 @@ public class PlayerService {
         playerRepository.findAll().forEach(players::add);
         return players;
     }
+
+    public List<Player> getTeamPlayers(int id) {
+        List<Player> players = new ArrayList<>();
+        playerRepository.findPlayersTeam(id);
+        return players;
+    }
 }

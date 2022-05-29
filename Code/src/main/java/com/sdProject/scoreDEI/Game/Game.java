@@ -21,8 +21,8 @@ public class Game {
     @ManyToOne
     private Team awayTeam;
     private String location;
-    Date date;
-    Time time;
+    private Date date;
+    private Time time;
 
     public Game() {
     }

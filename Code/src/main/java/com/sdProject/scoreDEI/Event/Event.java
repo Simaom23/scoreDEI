@@ -9,8 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import com.sdProject.scoreDEI.Game.Game;
-import com.sdProject.scoreDEI.Person.Person;
 import com.sdProject.scoreDEI.Player.Player;
+import com.sdProject.scoreDEI.Team.Team;
 
 @Entity
 public class Event {
@@ -21,20 +21,21 @@ public class Event {
     @ManyToOne
     private Game game;
     @ManyToOne
+    private Team team;
+    @ManyToOne
     private Player player;
-    private int type;
-    String text;
-    Date date;
-    Time time;
+    private String event;
+    private Date date;
+    private Time time;
 
     public Event() {
     }
 
-    public Event(Game game, Player player, int type, String text, Date date, Time time) {
+    public Event(Game game, Team team, Player player, String event, Date date, Time time) {
         this.game = game;
+        this.team = team;
         this.player = player;
-        this.type = type;
-        this.text = text;
+        this.event = event;
         this.date = date;
         this.time = time;
     }
@@ -55,6 +56,14 @@ public class Event {
         this.game = game;
     }
 
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
     public Player getPlayer() {
         return player;
     }
@@ -63,12 +72,28 @@ public class Event {
         this.player = player;
     }
 
-    public int getType() {
-        return type;
+    public String setEvent() {
+        return event;
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public void setEvent(String event) {
+        this.event = event;
+    }
+
+    public Date setDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Time setTime() {
+        return time;
+    }
+
+    public void setTime(Time time) {
+        this.time = time;
     }
 
 }
