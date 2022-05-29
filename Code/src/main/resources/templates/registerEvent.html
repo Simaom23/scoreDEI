@@ -6,6 +6,12 @@
 <body>
     <nav th:replace="layout :: nav" />
     <form method="post" th:action="@{/saveEvent}" th:object="${event}">
+        <div>
+            <input type="hidden" th:value="${eventType}" th:attr="name='eventType'">
+        </div>
+        <div>
+            <input type="hidden" th:value="${game.id}" th:attr="name='game'">
+        </div>
         <div class=" form-group">
             <label for="Team">Team</label>
             <select class="form-control" id="team" required th:field="*{team}">
@@ -18,11 +24,10 @@
             <label for="Away Team">Player</label>
             <select class="form-control" id="awayTeam" required th:field="*{player}">
                 <option value="" selected disabled>Home players</option>
-                <option th:each="player : ${homePlayers}" th:value="${{player.id}}" th:text="${player.name}" />
+                <option th:each="player : ${game.homeTeam.squad}" th:value="${{player.id}}" th:text="${player.name}" />
                 <option value="" selected disabled>Away players</option>
-                <option th:each="player : ${awayPlayers}" th:value="${{player.id}}" th:text="${player.name}" />
+                <option th:each="player : ${game.awayTeam.squad}" th:value="${{player.id}}" th:text="${player.name}" />
             </select>
-        </div>
         </div>
         <div class=" form-group">
             <label for="Date">Date</label>
@@ -33,9 +38,6 @@
             <label for="Time">Time</label>
             <input required type="time" step="2" id="time" class="form-control" placeholder="Enter time of event"
                 th:field="*{time}">
-        </div>
-        <div>
-            <input type="hidden" th:field="*{event}">
         </div>
         <button type="submit" class="btn btn-primary">Register Event</button>
     </form>

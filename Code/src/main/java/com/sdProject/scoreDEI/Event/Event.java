@@ -24,18 +24,18 @@ public class Event {
     private Team team;
     @ManyToOne
     private Player player;
-    private String event;
+    private String eventType;
     private Date date;
     private Time time;
 
     public Event() {
     }
 
-    public Event(Game game, Team team, Player player, String event, Date date, Time time) {
+    public Event(Game game, Team team, Player player, String eventType, Date date, Time time) {
         this.game = game;
         this.team = team;
         this.player = player;
-        this.event = event;
+        this.eventType = eventType;
         this.date = date;
         this.time = time;
     }
@@ -72,15 +72,15 @@ public class Event {
         this.player = player;
     }
 
-    public String setEvent() {
-        return event;
+    public String getEventType() {
+        return eventType;
     }
 
-    public void setEvent(String event) {
-        this.event = event;
+    public void setEventType(String eventType) {
+        this.eventType = eventType;
     }
 
-    public Date setDate() {
+    public Date getDate() {
         return date;
     }
 
@@ -88,7 +88,7 @@ public class Event {
         this.date = date;
     }
 
-    public Time setTime() {
+    public Time getTime() {
         return time;
     }
 

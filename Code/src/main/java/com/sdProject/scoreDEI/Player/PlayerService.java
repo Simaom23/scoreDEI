@@ -3,8 +3,6 @@ package com.sdProject.scoreDEI.Player;
 import java.util.List;
 import java.util.Optional;
 
-import com.sdProject.scoreDEI.Team.Team;
-
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +32,4 @@ public class PlayerService {
         return players;
     }
 
-    public List<Player> getTeamPlayers(Team team) {
-        List<Player> players = new ArrayList<>();
-        playerRepository.findPlayersTeam(team);
-        return players;
-    }
 }
