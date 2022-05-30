@@ -1,5 +1,6 @@
 package com.sdProject.scoreDEI.Team;
 
+import java.text.SimpleDateFormat;
 import java.util.Optional;
 
 import org.json.JSONArray;
@@ -15,16 +16,16 @@ import org.springframework.ui.Model;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
+import com.sdProject.scoreDEI.Player.Player;
+import com.sdProject.scoreDEI.Player.PlayerService;
 
 @Controller
 public class TeamController {
     @Autowired
     TeamService teamService;
+
+    @Autowired
+    PlayerService playerService;
 
     @GetMapping("/loadTeams")
     public String loadTeams(Model model) throws Exception{
@@ -32,29 +33,60 @@ public class TeamController {
         Unirest.setTimeouts(0, 0);
         String host = "https://v3.football.api-sports.io/";
         String query = "/teams?league=2&season=2021";
-
+        String APIKey = "721579ab8223a11583738ff080a18e08";
         HttpResponse<JsonNode> response = Unirest.get(host + query)
-        .header("x-rapidapi-key", "b43ff12ff9935aac041a44e7554f52be")
+        .header("x-rapidapi-key", APIKey)
         .header("x-rapidapi-host", "v3.football.api-sports.io")
         .asJson();
-        
-        // Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        // JsonParser jp = new JsonParser();
-        // JsonElement je = jp.parse(response.getBody().toString());
-        // String prettyJsonString = gson.toJson(je);
-        // System.out.println("status\n" + response.getStatus() + "\n");
-        // System.out.println("pretty\n" + prettyJsonString + "\n");
-
         JSONArray jo = (JSONArray) response.getBody().getObject().get("response");
+
         for (int i = 0; i < jo.length(); i++) {
             //System.out.println(jo.get(i));
         
             JSONObject object = (JSONObject) jo.get(i);
             //JSONObject venue = (JSONObject) object.get("venue");
             JSONObject team = (JSONObject) object.get("team");
-
             Team t = new Team(team.getString("name"));
             this.teamService.addTeam(t);
+
+            // Adiciona os players de cada team
+            Unirest.setTimeouts(0, 0);
+            query = "/players?season=2021&team=" + team.get("id");
+            response = Unirest.get(host + query)
+            .header("x-rapidapi-key", APIKey)
+            .header("x-rapidapi-host", "v3.football.api-sports.io")
+            .asJson();
+            JSONArray ja = (JSONArray) response.getBody().getObject().get("response");
+            
+            for (int j = 0; j < ja.length(); j++) {
+                JSONObject obj = (JSONObject) ja.get(j);
+                JSONObject player = (JSONObject) obj.get("player");
+                JSONObject birth = (JSONObject) player.get("birth");
+
+                String d;
+                try{
+                    d = birth.getString("date");
+                }
+                catch (Exception e){
+                    d = "0000-00-00";
+                }
+                java.util.Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(d);
+                java.sql.Date date = new java.sql.Date(utilDate.getTime());
+
+                JSONArray statistics = (JSONArray) obj.get("statistics");
+                JSONObject steam0 = (JSONObject) statistics.get(0);
+                JSONObject games = (JSONObject) steam0.get("games");
+                JSONObject goals = (JSONObject) steam0.get("goals");
+                int g;
+                try{
+                    g = goals.getInt("total");
+                }
+                catch (Exception e){
+                    g = 0;
+                }
+                Player p = new Player(player.getString("name"), games.getString("position"), date, t, g);
+                this.playerService.addPlayer(p);
+            }
         }
 
         return "redirect:/listTeams";
