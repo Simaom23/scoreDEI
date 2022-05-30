@@ -2,12 +2,17 @@ package com.sdProject.scoreDEI.Game;
 
 import java.sql.Date;
 import java.sql.Time;
-
+import java.util.List;
+import java.util.ArrayList;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.sdProject.scoreDEI.Event.Event;
 import com.sdProject.scoreDEI.Team.Team;
 
 @Entity
@@ -23,6 +28,9 @@ public class Game {
     private String location;
     private Date date;
     private Time time;
+    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL)
+    private List<Event> events;
+    private boolean ended;
 
     public Game() {
     }
@@ -33,6 +41,8 @@ public class Game {
         this.location = location;
         this.date = date;
         this.time = time;
+        this.events = new ArrayList<>();
+        ended = false;
     }
 
     public int getId() {
@@ -81,5 +91,21 @@ public class Game {
 
     public void setTime(Time time) {
         this.time = time;
+    }
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setSquad(List<Event> events) {
+        this.events = events;
+    }
+
+    public boolean getEnded() {
+        return ended;
+    }
+
+    public void setEnded(boolean ended) {
+        this.ended = ended;
     }
 }

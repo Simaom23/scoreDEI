@@ -35,7 +35,12 @@ public class EventController {
             model.addAttribute("event", new Event());
             model.addAttribute("game", op.get());
             model.addAttribute("eventType", eventType);
-            return "registerEvent";
+            if (eventType == "Game Started" || eventType == "Game Ended" || eventType == "Game Interrupted"
+                    || eventType == "Game Resumed") {
+                return "registerOtherEvent";
+            } else
+                return "registerEvent";
+
         } else {
             return "redirect:/gameStats?id=" + id;
         }
@@ -43,6 +48,7 @@ public class EventController {
 
     @PostMapping("/saveEvent")
     public String saveEvent(@ModelAttribute Event event) {
+        this.playerService.addGoal(event.getPlayer().getId());
         this.eventService.addEvent(event);
         return "redirect:/gameStats?id=" + event.getGame().getId();
     }

@@ -2,6 +2,9 @@ package com.sdProject.scoreDEI.Game;
 
 import java.util.List;
 import java.util.Optional;
+
+import com.sdProject.scoreDEI.Team.Team;
+
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +36,10 @@ public class GameService {
         List<Game> games = new ArrayList<>();
         gameRepository.findAll().forEach(games::add);
         return games;
+    }
+
+    public int getTeamGoals(Team team) {
+        int goals = gameRepository.getGameGoals(team);
+        return goals;
     }
 }

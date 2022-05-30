@@ -30,4 +30,60 @@ public class TeamService {
         teamRepository.findAll().forEach(teams::add);
         return teams;
     }
+
+    public void addGames(int id) {
+        teamRepository.addGames(id);
+    }
+
+    public List<Team> getGamesDescending() {
+        List<Team> teams = teamRepository.getGamesDescending();
+        return teams;
+    }
+
+    public List<Team> getGamesAscending() {
+        List<Team> teams = teamRepository.getGamesAscending();
+        return teams;
+    }
+
+    public void addWins(int id) {
+        teamRepository.addWins(id);
+    }
+
+    public List<Team> getWinsDescending() {
+        List<Team> teams = teamRepository.getWinsDescending();
+        return teams;
+    }
+
+    public List<Team> getWinsAscending() {
+        List<Team> teams = teamRepository.getWinsAscending();
+        return teams;
+    }
+
+    public void addLosses(int id) {
+        teamRepository.addLosses(id);
+    }
+
+    public List<Team> getLossesDescending() {
+        List<Team> teams = teamRepository.getLossesDescending();
+        return teams;
+    }
+
+    public List<Team> getLossesAscending() {
+        List<Team> teams = teamRepository.getLossesAscending();
+        return teams;
+    }
+
+    public void addDefeats(int id) {
+        teamRepository.addGames(id);
+    }
+
+    public List<Team> getDefeatsDescending() {
+        List<Team> teams = teamRepository.getDefeatsDescending();
+        return teams;
+    }
+
+    public List<Team> getDefeatsAscending() {
+        List<Team> teams = teamRepository.getDefeatsAscending();
+        return teams;
+    }
 }
