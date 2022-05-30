@@ -23,12 +23,12 @@ public class Player {
     public Player() {
     }
 
-    public Player(String name, String position, Date birthDate, Team team) {
+    public Player(String name, String position, Date birthDate, Team team, int goals) {
         this.name = name;
         this.position = position;
         this.birthDate = birthDate;
         this.team = team;
-        this.goals = 0;
+        this.goals = goals;
     }
 
     public int getId() {
