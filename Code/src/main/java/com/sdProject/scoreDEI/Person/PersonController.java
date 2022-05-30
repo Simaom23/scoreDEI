@@ -33,7 +33,10 @@ public class PersonController {
 
         if (op.isPresent()) {
             if (op.get().getPassword().equals(password))
-                return "redirect:/homepage";
+                if (op.get().getRole() == true)
+                    return "redirect:/homepage";
+                else
+                    return "redirect:/homepageUser";
         }
 
         return "login";
