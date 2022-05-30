@@ -27,12 +27,18 @@ public interface TeamRepository extends CrudRepository<Team, Integer> {
     @Transactional
     @Modifying
     @Query("UPDATE Team t SET t.defeats = t.defeats + 1 WHERE id = :id")
-    void addDefeates(int id);
+    void addDefeats(int id);
+
+    @Query("SELECT t FROM Team t ORDER BY name DESC")
+    List<Team> getTeamsDescending();
+
+    @Query("SELECT t FROM Team t ORDER BY name ASC")
+    List<Team> getTeamsAscending();
 
     @Query("SELECT t FROM Team t ORDER BY games DESC")
     List<Team> getGamesDescending();
 
-    @Query("SELECT t FROM Team t ORDER BY wins ASC")
+    @Query("SELECT t FROM Team t ORDER BY games ASC")
     List<Team> getGamesAscending();
 
     @Query("SELECT t FROM Team t ORDER BY wins DESC")

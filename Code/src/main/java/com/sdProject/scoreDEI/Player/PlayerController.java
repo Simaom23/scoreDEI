@@ -52,8 +52,24 @@ public class PlayerController {
     }
 
     @GetMapping("/listPlayers")
-    public String listPlayer(Model model) {
-        model.addAttribute("players", this.playerService.getGoalsDescending());
+    public String listPlayer(@RequestParam(name = "order", required = false) String order, Model model) {
+        if (order == null)
+            order = "AscendingPlayers";
+
+        if (order.equals("DescendingPlayers")) {
+            model.addAttribute("order", "Descending");
+            model.addAttribute("players", this.playerService.getPlayersDescending());
+        } else if (order.equals("AscendingPlayers")) {
+            model.addAttribute("order", "Ascending");
+            model.addAttribute("players", this.playerService.getPlayersAscending());
+
+        } else if (order.equals("DescendingGoals")) {
+            model.addAttribute("order", "Descending");
+            model.addAttribute("players", this.playerService.getGoalsDescending());
+        } else if (order.equals("AscendingGoals")) {
+            model.addAttribute("order", "Ascending");
+            model.addAttribute("players", this.playerService.getGoalsAscending());
+        }
         return "listPlayers";
     }
 }

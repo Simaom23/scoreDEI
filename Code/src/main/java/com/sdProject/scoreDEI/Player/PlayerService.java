@@ -32,6 +32,16 @@ public class PlayerService {
         return players;
     }
 
+    public List<Player> getPlayersDescending() {
+        List<Player> players = playerRepository.getPlayersDescending();
+        return players;
+    }
+
+    public List<Player> getPlayersAscending() {
+        List<Player> players = playerRepository.getPlayersAscending();
+        return players;
+    }
+
     public void addGoal(int id) {
         playerRepository.addGoal(id);
     }

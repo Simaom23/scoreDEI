@@ -23,6 +23,7 @@ public class Player {
     public Player() {
     }
 
+
     public Player(String name, String position, Date date, Team team, int goals) {
         this.name = name;
         this.position = position;

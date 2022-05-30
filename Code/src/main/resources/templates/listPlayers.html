@@ -8,11 +8,17 @@
     <table class="table">
         <thead class="thead-dark">
             <tr>
-                <th scope="col">Player Name</th>
+                <th scope="col" th:switch="${order}">
+                    <a th:case="Descending" th:href="@{listPlayers(order=${'AscendingPlayers'})}">Name</a>
+                    <a th:case="Ascending" th:href="@{listPlayers(order=${'DescendingPlayers'})}">Name</a>
+                </th>
                 <th scope="col">Team</th>
                 <th scope="col">Position</th>
                 <th scope="col">Birth Date</th>
-                <th scope="col">Goals</th>
+                <th scope="col" th:switch="${order}">
+                    <a th:case="Descending" th:href="@{listPlayers(order=${'AscendingGoals'})}">Goals</a>
+                    <a th:case="Ascending" th:href="@{listPlayers(order=${'DescendingGoals'})}">Goals</a>
+                </th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -24,7 +30,7 @@
                 <td th:text="${player.birthDate}">birthDate</td>
                 <td th:text="${player.goals}">goals</td>
                 <td>
-                    <a th:href="@{managePlayer(id=${player.id})}" class="btn btn-primary">Edit/Delete</a>
+                    <a th:href="@{managePlayer(id=${'player.id'})}" class="btn btn-primary">Edit/Delete</a>
                 </td>
             </tr>
         </tbody>
