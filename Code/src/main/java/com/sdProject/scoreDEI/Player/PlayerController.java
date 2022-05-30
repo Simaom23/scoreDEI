@@ -53,7 +53,7 @@ public class PlayerController {
 
     @GetMapping("/listPlayers")
     public String listPlayer(Model model) {
-        model.addAttribute("players", this.playerService.getAllPlayers());
+        model.addAttribute("players", this.playerService.getGoalsDescending());
         return "listPlayers";
     }
 }

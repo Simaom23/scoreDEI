@@ -26,7 +26,10 @@ public class ViewsController {
     public String manageUser(@RequestParam(name = "id", required = true) int id, Model model) {
         Optional<Game> op = this.gameService.getGameById(id);
         if (op.isPresent()) {
-            model.addAttribute("game", op.get());
+            Game game = op.get();
+            model.addAttribute("game", game);
+            model.addAttribute("homeGoals", this.gameService.getTeamGoals(game.getHomeTeam()));
+            model.addAttribute("awayGoals", this.gameService.getTeamGoals(game.getAwayTeam()));
             return "gameStats";
         } else {
             return "redirect:/homepage";
