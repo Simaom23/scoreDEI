@@ -31,6 +31,16 @@ public class TeamService {
         return teams;
     }
 
+    public List<Team> getTeamsDescending() {
+        List<Team> teams = teamRepository.getTeamsDescending();
+        return teams;
+    }
+
+    public List<Team> getTeamsAscending() {
+        List<Team> teams = teamRepository.getTeamsAscending();
+        return teams;
+    }
+
     public void addGames(int id) {
         teamRepository.addGames(id);
     }

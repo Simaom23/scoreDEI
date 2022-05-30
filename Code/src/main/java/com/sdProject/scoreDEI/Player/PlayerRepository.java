@@ -14,6 +14,12 @@ public interface PlayerRepository extends CrudRepository<Player, Integer> {
     @Query("UPDATE Player p SET p.goals = p.goals + 1 WHERE id = :id")
     void addGoal(int id);
 
+    @Query("SELECT p FROM Player p ORDER BY name DESC")
+    List<Player> getPlayersDescending();
+
+    @Query("SELECT p FROM Player p ORDER BY name ASC")
+    List<Player> getPlayersAscending();
+
     @Query("SELECT p FROM Player p ORDER BY goals DESC")
     List<Player> getGoalsDescending();
 

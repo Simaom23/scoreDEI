@@ -6,6 +6,8 @@ import java.util.Optional;
 
 import com.sdProject.scoreDEI.Game.Game;
 import com.sdProject.scoreDEI.Game.GameService;
+import com.sdProject.scoreDEI.Team.Team;
+import com.sdProject.scoreDEI.Team.TeamService;
 import com.sdProject.scoreDEI.Player.PlayerService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,9 @@ public class EventController {
     @Autowired
     PlayerService playerService;
 
+    @Autowired
+    TeamService teamService;
+
     @GetMapping("/registerEvent")
     public String registerEvent(@RequestParam(name = "id", required = true) int id,
             @RequestParam(name = "eventType", required = true) String eventType, Model model) {
@@ -35,8 +40,9 @@ public class EventController {
             model.addAttribute("event", new Event());
             model.addAttribute("game", op.get());
             model.addAttribute("eventType", eventType);
-            if (eventType == "Game Started" || eventType == "Game Ended" || eventType == "Game Interrupted"
-                    || eventType == "Game Resumed") {
+            if (eventType.equals("Game Started") || eventType.equals("Game Ended")
+                    || eventType.equals("Game Interrupted")
+                    || eventType.equals("Game Resumed")) {
                 return "registerOtherEvent";
             } else
                 return "registerEvent";
@@ -48,8 +54,28 @@ public class EventController {
 
     @PostMapping("/saveEvent")
     public String saveEvent(@ModelAttribute Event event) {
-        this.playerService.addGoal(event.getPlayer().getId());
+        if (event.getEventType().equals("Goal")) {
+            this.playerService.addGoal(event.getPlayer().getId());
+        } else if (event.getEventType().equals("Game Ended")) {
+            Team homeTeam = event.getGame().getHomeTeam();
+            Team awayTeam = event.getGame().getAwayTeam();
+            this.teamService.addGames(homeTeam.getId());
+            this.teamService.addGames(awayTeam.getId());
+            int homeGoals = this.gameService.getTeamGoals(homeTeam);
+            int awayGoals = this.gameService.getTeamGoals(awayTeam);
+            if (homeGoals > awayGoals) {
+                this.teamService.addWins(homeTeam.getId());
+                this.teamService.addLosses(awayTeam.getId());
+            } else if (homeGoals < awayGoals) {
+                this.teamService.addLosses(homeTeam.getId());
+                this.teamService.addWins(awayTeam.getId());
+            } else {
+                this.teamService.addDefeats(homeTeam.getId());
+                this.teamService.addDefeats(awayTeam.getId());
+            }
+        }
         this.eventService.addEvent(event);
+
         return "redirect:/gameStats?id=" + event.getGame().getId();
     }
 }

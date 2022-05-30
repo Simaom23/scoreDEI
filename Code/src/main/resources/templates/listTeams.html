@@ -8,11 +8,26 @@
     <table class="table">
         <thead class="thead-dark">
             <tr>
-                <th scope="col">Team</th>
-                <th scope="col">Games Played</th>
-                <th scope="col">Wins</th>
-                <th scope="col">Defeats</th>
-                <th scope="col">Losses</th>
+                <th scope="col" th:switch="${order}">
+                    <a th:case="Descending" th:href="@{listTeams(order=${'AscendingTeams'})}">Team</a>
+                    <a th:case="Ascending" th:href="@{listTeams(order=${'DescendingTeams'})}">Team</a>
+                </th>
+                <th scope="col" th:switch="${order}">
+                    <a th:case="Descending" th:href="@{listTeams(order=${'AscendingGames'})}">Games Played</a>
+                    <a th:case="Ascending" th:href="@{listTeams(order=${'DescendingGames'})}">Games Played</a>
+                </th>
+                <th scope="col" th:switch="${order}">
+                    <a th:case="Descending" th:href="@{listTeams(order=${'AscendingWins'})}">Wins</a>
+                    <a th:case="Ascending" th:href="@{listTeams(order=${'DescendingWins'})}">Wins</a>
+                </th>
+                <th scope="col" th:switch="${order}">
+                    <a th:case="Descending" th:href="@{listTeams(order=${'AscendingDefeats'})}">Defeats</a>
+                    <a th:case="Ascending" th:href="@{listTeams(order=${'DescendingDefeats'})}">Defeats</a>
+                </th>
+                <th scope="col" th:switch="${order}">
+                    <a th:case="Descending" th:href="@{listTeams(order=${'AscendingLosses'})}">Losses</a>
+                    <a th:case="Ascending" th:href="@{listTeams(order=${'DescendingLosses'})}">Losses</a>
+                </th>
                 <th scope="col"></th>
             </tr>
         </thead>
