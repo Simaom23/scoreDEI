@@ -8,16 +8,16 @@ Existem três tipos de utilizadores que são:
 - User
 - Not User
 
-Os Not User podem, então efetuar operações como:
+Os **Not User** podem, então efetuar operações como:
 
 - Acompanhar jogo
 - Consultar estatísticas
 
-Os User podem fazer tudo que o Not User faz mais efetuar operações como:
+Os **User** podem fazer tudo que o Not User faz mais efetuar operações como:
 
 - Registar evento num jogo
 
-Por fim os Admins podem efetuar todas as operações anterios mais as seguintes:
+Por fim os **Admin** podem efetuar todas as operações anterios mais as seguintes:
 
 - Registar utilizadores
 - Criar/Gerir Equipas
