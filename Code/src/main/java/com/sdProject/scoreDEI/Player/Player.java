@@ -23,10 +23,11 @@ public class Player {
     public Player() {
     }
 
-    public Player(String name, String position, Date birthDate, Team team, int goals) {
+
+    public Player(String name, String position, Date date, Team team, int goals) {
         this.name = name;
         this.position = position;
-        this.birthDate = birthDate;
+        this.birthDate = date;
         this.team = team;
         this.goals = goals;
     }
