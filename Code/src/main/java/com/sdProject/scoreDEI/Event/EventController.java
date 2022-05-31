@@ -40,16 +40,40 @@ public class EventController {
             model.addAttribute("event", new Event());
             model.addAttribute("game", op.get());
             model.addAttribute("eventType", eventType);
-            if (eventType.equals("Game Started") || eventType.equals("Game Ended")
-                    || eventType.equals("Game Interrupted")
-                    || eventType.equals("Game Resumed")) {
-                return "registerOtherEvent";
+
+            if (eventType.equals("Game Started")) {
+                if (op.get().getStarted() == false) {
+                    op.get().setStarted(true);
+                    return "registerOtherEvent";
+                }
+                return "redirect:/gameStats?id=" + id;
+
+            } else if (eventType.equals("Game Ended")) {
+                if (op.get().getEnded() == false) {
+                    op.get().setEnded(true);
+                    return "registerOtherEvent";
+                }
+                return "redirect:/gameStats?id=" + id;
+
+            } else if (eventType.equals("Game Interrupted")) {
+                if (op.get().getInterrupted() == false) {
+                    op.get().setInterrupted(true);
+                    return "registerOtherEvent";
+                }
+                return "redirect:/gameStats?id=" + id;
+
+            } else if (eventType.equals("Game Resumed")) {
+                if (op.get().getInterrupted() == true) {
+                    op.get().setInterrupted(false);
+                    return "registerOtherEvent";
+                }
+                return "redirect:/gameStats?id=" + id;
+
             } else
                 return "registerEvent";
 
-        } else {
+        } else
             return "redirect:/gameStats?id=" + id;
-        }
     }
 
     @GetMapping("/registerEventUser")
@@ -60,16 +84,40 @@ public class EventController {
             model.addAttribute("event", new Event());
             model.addAttribute("game", op.get());
             model.addAttribute("eventType", eventType);
-            if (eventType.equals("Game Started") || eventType.equals("Game Ended")
-                    || eventType.equals("Game Interrupted")
-                    || eventType.equals("Game Resumed")) {
-                return "registerOtherEventUser";
+
+            if (eventType.equals("Game Started")) {
+                if (op.get().getStarted() == false) {
+                    op.get().setStarted(true);
+                    return "registerOtherEventUser";
+                }
+                return "redirect:/gameStatsUser?id=" + id;
+
+            } else if (eventType.equals("Game Ended")) {
+                if (op.get().getEnded() == false) {
+                    op.get().setEnded(true);
+                    return "registerOtherEventUser";
+                }
+                return "redirect:/gameStatsUser?id=" + id;
+
+            } else if (eventType.equals("Game Interrupted")) {
+                if (op.get().getInterrupted() == false) {
+                    op.get().setInterrupted(true);
+                    return "registerOtherEventUser";
+                }
+                return "redirect:/gameStatsUser?id=" + id;
+
+            } else if (eventType.equals("Game Resumed")) {
+                if (op.get().getInterrupted() == true) {
+                    op.get().setInterrupted(false);
+                    return "registerOtherEventUser";
+                }
+                return "redirect:/gameStatsUser?id=" + id;
+
             } else
                 return "registerEventUser";
 
-        } else {
+        } else
             return "redirect:/gameStatsUser?id=" + id;
-        }
     }
 
     @PostMapping("/saveEvent")

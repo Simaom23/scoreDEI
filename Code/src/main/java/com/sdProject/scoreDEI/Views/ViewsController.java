@@ -18,19 +18,19 @@ public class ViewsController {
 
     @GetMapping("/homepage")
     public String homepageAdmin(Model model) {
-        model.addAttribute("games", this.gameService.getAllGames());
+        model.addAttribute("games", this.gameService.getPresentGames());
         return "homepage";
     }
 
     @GetMapping("/homepageUser")
     public String homepageUser(Model model) {
-        model.addAttribute("games", this.gameService.getAllGames());
+        model.addAttribute("games", this.gameService.getPresentGames());
         return "homepageUser";
     }
 
     @GetMapping("/homepageUnsigned")
     public String homepageUnsigned(Model model) {
-        model.addAttribute("games", this.gameService.getAllGames());
+        model.addAttribute("games", this.gameService.getPresentGames());
         return "homepageUnsigned";
     }
 

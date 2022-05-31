@@ -31,6 +31,8 @@ public class Game {
     @OneToMany(mappedBy = "game", cascade = CascadeType.ALL)
     private List<Event> events;
     private boolean ended;
+    private boolean interrupted;
+    private boolean started;
 
     public Game() {
     }
@@ -43,6 +45,8 @@ public class Game {
         this.time = time;
         this.events = new ArrayList<>();
         ended = false;
+        interrupted = false;
+        started = false;
     }
 
     public int getId() {
@@ -107,5 +111,21 @@ public class Game {
 
     public void setEnded(boolean ended) {
         this.ended = ended;
+    }
+
+    public boolean getStarted() {
+        return started;
+    }
+
+    public void setStarted(boolean started) {
+        this.started = started;
+    }
+
+    public boolean getInterrupted() {
+        return interrupted;
+    }
+
+    public void setInterrupted(boolean interrupted) {
+        this.interrupted = interrupted;
     }
 }

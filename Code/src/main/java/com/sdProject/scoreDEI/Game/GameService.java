@@ -38,6 +38,12 @@ public class GameService {
         return games;
     }
 
+    public List<Game> getPresentGames() {
+        List<Game> games = gameRepository.getPresentGames();
+        System.out.println(games);
+        return games;
+    }
+
     public int getTeamGoals(Team team) {
         int goals = gameRepository.getGameGoals(team);
         return goals;
