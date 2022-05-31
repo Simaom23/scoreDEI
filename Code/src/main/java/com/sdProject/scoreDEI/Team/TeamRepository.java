@@ -29,6 +29,9 @@ public interface TeamRepository extends CrudRepository<Team, Integer> {
     @Query("UPDATE Team t SET t.defeats = t.defeats + 1 WHERE id = :id")
     void addDefeats(int id);
 
+    @Query("SELECT t FROM Team t WHERE t.name = :name")
+    Team findByName(String name);
+
     @Query("SELECT t FROM Team t ORDER BY name DESC")
     List<Team> getTeamsDescending();
 

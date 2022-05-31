@@ -25,6 +25,10 @@ public class TeamService {
         return teamRepository.findById(id);
     }
 
+    public Team getTeamByName(String name) {
+        return teamRepository.findByName(name);
+    }
+
     public List<Team> getAllTeams() {
         List<Team> teams = new ArrayList<>();
         teamRepository.findAll().forEach(teams::add);

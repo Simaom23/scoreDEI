@@ -22,16 +22,18 @@ public class Team {
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
     private List<Player> squad;
     private int games, wins, defeats, losses;
+    private String logo;
 
     public Team() {
     }
 
-    public Team(String name) {
+    public Team(String name, String logo) {
         this.name = name;
         this.games = 0;
         this.wins = 0;
         this.defeats = 0;
         this.losses = 0;
+        this.logo = logo;
         this.squad = new ArrayList<>();
     }
 
@@ -89,5 +91,13 @@ public class Team {
 
     public void setLosses(int losses) {
         this.losses = losses;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 }

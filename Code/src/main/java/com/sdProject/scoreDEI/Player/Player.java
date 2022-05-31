@@ -14,7 +14,7 @@ public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private String name, position;
+    private String name, position, photo;
     Date birthDate;
     @ManyToOne
     private Team team;
@@ -24,12 +24,13 @@ public class Player {
     }
 
 
-    public Player(String name, String position, Date date, Team team, int goals) {
+    public Player(String name, String position, Date date, Team team, int goals, String photo) {
         this.name = name;
         this.position = position;
         this.birthDate = date;
         this.team = team;
         this.goals = goals;
+        this.photo = photo;
     }
 
     public int getId() {
@@ -50,6 +51,14 @@ public class Player {
 
     public String getPosition() {
         return position;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public String getPhoto() {
+        return photo;
     }
 
     public void setPosition(String position) {

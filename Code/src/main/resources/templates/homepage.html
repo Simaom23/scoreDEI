@@ -21,11 +21,11 @@
                 <td>
                     <a th:href="@{gameStats(id=${game.id})}" class="btn btn-primary">See</a>
                 </td>
-                <td>Flag</td>
+                <td><img th:src="${game.homeTeam.logo}" alt="logo" style="width:30px; height:30px;"></td>
                 <td th:text="${game.homeTeam.name}">Home Team</td>
                 <td th:utext="${game.date + ' ' + game.time}">Time</td>
                 <td th:text="${game.awayTeam.name}">Away Team</td>
-                <td>Flag</td>
+                <td><img th:src="${game.awayTeam.logo}" alt="logo" style="width:30px; height:30px;"></td>
             </tr>
         </tbody>
     </table>

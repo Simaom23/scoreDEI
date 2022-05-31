@@ -8,13 +8,13 @@
     <table class="table table-borderless table-dark">
         <thead>
             <tr>
-                <th scope="col">Home Flag</th>
+                <th scope="col"><img th:src="${game.homeTeam.logo}" alt="logo" style="width:30px; height:30px;"></th>
                 <th scope="col" th:text="${game.homeTeam.name}">Home Team</th>
                 <th scope="col" th:text="${homeGoals}">Home Goals</th>
                 <th scope="col" th:text="${game.date + ' ' + game.time}">Date and Time</th>
                 <th scope="col" th:text="${awayGoals}">Away Goals</th>
                 <th scope="col" th:text="${game.awayTeam.name}">Away Team</th>
-                <th scope="col">Away Flag</th>
+                <th scope="col"><img th:src="${game.awayTeam.logo}" alt="logo" style="width:30px; height:30px;"></th>
             </tr>
         </thead>
     </table>

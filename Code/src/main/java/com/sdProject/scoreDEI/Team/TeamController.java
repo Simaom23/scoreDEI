@@ -27,13 +27,14 @@ public class TeamController {
     @Autowired
     PlayerService playerService;
 
-    @GetMapping("/loadTeams")
+    @GetMapping("/load")
     public String loadTeams(Model model) throws Exception {
 
+        // Adiciona as teams
         Unirest.setTimeouts(0, 0);
         String host = "https://v3.football.api-sports.io/";
         String query = "/teams?league=2&season=2021";
-        String APIKey = "721579ab8223a11583738ff080a18e08";
+        String APIKey = "b43ff12ff9935aac041a44e7554f52be";
         HttpResponse<JsonNode> response = Unirest.get(host + query)
                 .header("x-rapidapi-key", APIKey)
                 .header("x-rapidapi-host", "v3.football.api-sports.io")
@@ -44,25 +45,26 @@ public class TeamController {
             // System.out.println(jo.get(i));
 
             JSONObject object = (JSONObject) jo.get(i);
-            // JSONObject venue = (JSONObject) object.get("venue");
             JSONObject team = (JSONObject) object.get("team");
-            Team t = new Team(team.getString("name"));
+            Team t = new Team(team.getString("name"), team.getString("logo"));
             this.teamService.addTeam(t);
+        }
 
-            // Adiciona os players de cada team
+        // Adiciona os players
+        for (int i = 1; i < 5; i++) {
             Unirest.setTimeouts(0, 0);
-            query = "/players?season=2021&team=" + team.get("id");
+            query = "/players?league=2&season=2021&page=" + Integer.toString(i);
             response = Unirest.get(host + query)
                     .header("x-rapidapi-key", APIKey)
                     .header("x-rapidapi-host", "v3.football.api-sports.io")
                     .asJson();
-            JSONArray ja = (JSONArray) response.getBody().getObject().get("response");
+            jo = (JSONArray) response.getBody().getObject().get("response");
 
-            for (int j = 0; j < ja.length(); j++) {
-                JSONObject obj = (JSONObject) ja.get(j);
+            for (int j = 0; j < jo.length(); j++) {
+
+                JSONObject obj = (JSONObject) jo.get(j);
                 JSONObject player = (JSONObject) obj.get("player");
                 JSONObject birth = (JSONObject) player.get("birth");
-
                 String d;
                 try {
                     d = birth.getString("date");
@@ -71,18 +73,18 @@ public class TeamController {
                 }
                 java.util.Date utilDate = new SimpleDateFormat("yyyy-MM-dd").parse(d);
                 java.sql.Date date = new java.sql.Date(utilDate.getTime());
-
                 JSONArray statistics = (JSONArray) obj.get("statistics");
                 JSONObject steam0 = (JSONObject) statistics.get(0);
                 JSONObject games = (JSONObject) steam0.get("games");
                 JSONObject goals = (JSONObject) steam0.get("goals");
+                JSONObject team = (JSONObject) steam0.get("team");
                 int g;
                 try {
                     g = goals.getInt("total");
                 } catch (Exception e) {
                     g = 0;
                 }
-                Player p = new Player(player.getString("name"), games.getString("position"), date, t, g);
+                Player p = new Player(player.getString("name"), games.getString("position"), date, this.teamService.getTeamByName(team.getString("name")), g, player.getString("photo"));
                 this.playerService.addPlayer(p);
             }
         }
