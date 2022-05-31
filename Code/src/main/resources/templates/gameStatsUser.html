@@ -21,25 +21,27 @@
 
     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
         <div class="btn-group" role="group" aria-label="First group">
-            <a th:href="@{registerEvent(id=${game.id}, eventType=${'Game Started'})}" class="btn btn-primary">Game
+            <a th:href="@{registerEventUser(id=${game.id}, eventType=${'Game Started'})}" class="btn btn-primary">Game
                 Started</a>
-            <a th:href="@{registerEvent(id=${game.id}, eventType=${'Game Ended'})}" class="btn btn-primary">Game
+            <a th:href="@{registerEventUser(id=${game.id}, eventType=${'Game Ended'})}" class="btn btn-primary">Game
                 Ended</a>
         </div>
         <div class="btn-group" role="group" aria-label="Second group">
-            <a th:href="@{registerEvent(id=${game.id}, eventType=${'Goal'})}" class="btn btn-primary">Goal</a>
+            <a th:href="@{registerEventUser(id=${game.id}, eventType=${'Goal'})}" class="btn btn-primary">Goal</a>
         </div>
         <div class="btn-group" role="group" aria-label="Second group">
-            <a th:href="@{registerEvent(id=${game.id}, eventType=${'Yellow Card'})}" class="btn btn-primary">Yellow
+            <a th:href="@{registerEventUser(id=${game.id}, eventType=${'Yellow Card'})}" class="btn btn-primary">Yellow
                 Card</a>
         </div>
         <div class="btn-group" role="group" aria-label="Second group">
-            <a th:href="@{registerEvent(id=${game.id}, eventType=${'Red Card'})}" class="btn btn-primary">Red Card</a>
+            <a th:href="@{registerEventUser(id=${game.id}, eventType=${'Red Card'})}" class="btn btn-primary">Red
+                Card</a>
         </div>
         <div class="btn-group" role="group" aria-label="Second group">
-            <a th:href="@{registerEvent(id=${game.id}, eventType=${'Game Interrupted'})}" class="btn btn-primary">Game
+            <a th:href="@{registerEventUser(id=${game.id}, eventType=${'Game Interrupted'})}"
+                class="btn btn-primary">Game
                 Interrupted</a>
-            <a th:href="@{registerEvent(id=${game.id}, eventType=${'Game Resumed'})}" class="btn btn-primary">Game
+            <a th:href="@{registerEventUser(id=${game.id}, eventType=${'Game Resumed'})}" class="btn btn-primary">Game
                 Resumed</a>
         </div>
     </div>

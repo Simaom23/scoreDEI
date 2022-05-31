@@ -35,7 +35,7 @@ public class ViewsController {
     }
 
     @GetMapping("/gameStats")
-    public String manageUser(@RequestParam(name = "id", required = true) int id, Model model) {
+    public String gameStats(@RequestParam(name = "id", required = true) int id, Model model) {
         Optional<Game> op = this.gameService.getGameById(id);
         if (op.isPresent()) {
             Game game = op.get();
@@ -56,13 +56,13 @@ public class ViewsController {
             model.addAttribute("game", game);
             model.addAttribute("homeGoals", this.gameService.getTeamGoals(game.getHomeTeam()));
             model.addAttribute("awayGoals", this.gameService.getTeamGoals(game.getAwayTeam()));
-            return "gameStats";
+            return "gameStatsUser";
         } else {
             return "redirect:/homepageUser";
         }
     }
 
-    @GetMapping("/gameStatsUnisgned")
+    @GetMapping("/gameStatsUnsigned")
     public String gameStatsUnsigned(@RequestParam(name = "id", required = true) int id, Model model) {
         Optional<Game> op = this.gameService.getGameById(id);
         if (op.isPresent()) {
@@ -70,7 +70,7 @@ public class ViewsController {
             model.addAttribute("game", game);
             model.addAttribute("homeGoals", this.gameService.getTeamGoals(game.getHomeTeam()));
             model.addAttribute("awayGoals", this.gameService.getTeamGoals(game.getAwayTeam()));
-            return "gameStatsUnsiged";
+            return "gameStatsUnsigned";
         } else {
             return "redirect:/homepageUnsigned";
         }
