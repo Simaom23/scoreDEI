@@ -27,17 +27,9 @@ Por fim os **Admin** podem efetuar todas as operações anterios mais as seguint
 ## Executar o scoreDei:
 
 - O scoreDei vem com todos os ficheiros necessários, na pasta code, para ser executado.
-- Criamos, também, um container dentro da pasta code para aqueles que pretendem correr a aplicação num container docker.
+- Criamos, também, um container dentro da pasta code para correr a aplicação num container docker.
 
-**Fora do container:**
-
-- Deverá abrir a pasta code do projeto num terminal ou num IDE com terminal e executar o comando:
-
-```
-  ./mvnw spring-boot:run
-```
-
-**Dentro do container:**
+**Container:**
 
 - Deverá abrir o docker e inicializar o container, através de um IDE que suporte Remote Containers ou mesmo na própria aplicação docker.
 - Dentro do container irá se encontrar na pasta workspace em que poderá executar o comando:
@@ -56,4 +48,16 @@ Por fim os **Admin** podem efetuar todas as operações anterios mais as seguint
 
 ```
   ./mvnw spring-boot:run
+```
+
+- Existe, também, um ficheiro WAR no seguinte diretório:
+
+```
+  scoreDEI\Code\target\scoreDEI-0.0.1-SNAPSHOT.war
+```
+
+- Este ficheiro WAR poderá ser executado, dentro do diretório referido acima, através do seguinte comando:
+
+```
+  java -jar scoreDEI-0.0.1-SNAPSHOT.war
 ```
