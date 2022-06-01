@@ -33,7 +33,7 @@
                 <td th:text="${player.birthDate}">birthDate</td>
                 <td th:text="${player.goals}">goals</td>
                 <td>
-                    <a th:href="@{managePlayer(id=${'player.id'})}" class="btn btn-primary">Edit/Delete</a>
+                    <a th:href="@{managePlayer(id=${player.id})}" class="btn btn-primary">Edit/Delete</a>
                 </td>
             </tr>
         </tbody>

@@ -10,24 +10,24 @@
             <tr>
                 <th style="padding-left:30px;" scope="col">Logo</th>
                 <th scope="col" th:switch="${order}">
-                    <a th:case="Descending" th:href="@{statsTeamsUnsigned(order=${'AscendingTeams'})}">Team</a>
-                    <a th:case="Ascending" th:href="@{statsTeamsUnsigned(order=${'DescendingTeams'})}">Team</a>
+                    <a th:case="Descending" th:href="@{statsTeamsUnsigned(order=${'AscendingTeams'})}">↓ Team</a>
+                    <a th:case="Ascending" th:href="@{statsTeamsUnsigned(order=${'DescendingTeams'})}">↑ Team</a>
                 </th>
                 <th scope="col" th:switch="${order}">
-                    <a th:case="Descending" th:href="@{statsTeamsUnsigned(order=${'AscendingGames'})}">Games Played</a>
-                    <a th:case="Ascending" th:href="@{statsTeamsUnsigned(order=${'DescendingGames'})}">Games Played</a>
+                    <a th:case="Descending" th:href="@{statsTeamsUnsigned(order=${'AscendingGames'})}">↓ Games Played</a>
+                    <a th:case="Ascending" th:href="@{statsTeamsUnsigned(order=${'DescendingGames'})}">↑ Games Played</a>
                 </th>
                 <th scope="col" th:switch="${order}">
-                    <a th:case="Descending" th:href="@{statsTeamsUnsigned(order=${'AscendingWins'})}">Wins</a>
-                    <a th:case="Ascending" th:href="@{statsTeamsUnsigned(order=${'DescendingWins'})}">Wins</a>
+                    <a th:case="Descending" th:href="@{statsTeamsUnsigned(order=${'AscendingWins'})}">↓ Wins</a>
+                    <a th:case="Ascending" th:href="@{statsTeamsUnsigned(order=${'DescendingWins'})}">↑ Wins</a>
                 </th>
                 <th scope="col" th:switch="${order}">
-                    <a th:case="Descending" th:href="@{statsTeamsUnsigned(order=${'AscendingDefeats'})}">Defeats</a>
-                    <a th:case="Ascending" th:href="@{statsTeamsUnsigned(order=${'DescendingDefeats'})}">Defeats</a>
+                    <a th:case="Descending" th:href="@{statsTeamsUnsigned(order=${'AscendingDefeats'})}">↓ Defeats</a>
+                    <a th:case="Ascending" th:href="@{statsTeamsUnsigned(order=${'DescendingDefeats'})}">↑ Defeats</a>
                 </th>
                 <th scope="col" th:switch="${order}">
-                    <a th:case="Descending" th:href="@{statsTeamsUnsigned(order=${'AscendingLosses'})}">Losses</a>
-                    <a th:case="Ascending" th:href="@{statsTeamsUnsigned(order=${'DescendingLosses'})}">Losses</a>
+                    <a th:case="Descending" th:href="@{statsTeamsUnsigned(order=${'AscendingLosses'})}">↓ Losses</a>
+                    <a th:case="Ascending" th:href="@{statsTeamsUnsigned(order=${'DescendingLosses'})}">↑ Losses</a>
                 </th>
                 <th scope="col"></th>
             </tr>

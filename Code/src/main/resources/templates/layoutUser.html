@@ -1,10 +1,12 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 
+<head th:replace="layout :: head" />
+
 <body>
     <nav th:fragment="nav" class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" th:href="@{/homepageUser}">
-            <img th:src="@{/static/logo.png}" width=" 30" height="30" class="d-inline-block align-top" alt="logo">
+            <img th:src="@{logo.png}" width="50" height="45" class="d-inline-block align-top" alt="logo" type="image/png">
             scoreDEI
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

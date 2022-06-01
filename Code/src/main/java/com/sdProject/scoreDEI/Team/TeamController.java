@@ -41,28 +41,27 @@ public class TeamController {
                 .asJson();
         JSONArray jo = (JSONArray) response.getBody().getObject().get("response");
 
-        for (int i = 0; i < jo.length(); i++) {
+        // Número de equipas adicionadas com os respetivos jogadores
+        for (int i = 0; i < 4; i++) {
             // System.out.println(jo.get(i));
 
             JSONObject object = (JSONObject) jo.get(i);
             JSONObject team = (JSONObject) object.get("team");
             Team t = new Team(team.getString("name"), team.getString("logo"));
             this.teamService.addTeam(t);
-        }
 
-        // Adiciona os players
-        for (int i = 1; i < 5; i++) {
+            // Adiciona os players
             Unirest.setTimeouts(0, 0);
-            query = "/players?league=2&season=2021&page=" + Integer.toString(i);
+            query = "/players?season=2021&team=" + team.get("id");
             response = Unirest.get(host + query)
                     .header("x-rapidapi-key", APIKey)
                     .header("x-rapidapi-host", "v3.football.api-sports.io")
                     .asJson();
-            jo = (JSONArray) response.getBody().getObject().get("response");
+            JSONArray jj = (JSONArray) response.getBody().getObject().get("response");
 
-            for (int j = 0; j < jo.length(); j++) {
+            for (int j = 0; j < jj.length(); j++) {
 
-                JSONObject obj = (JSONObject) jo.get(j);
+                JSONObject obj = (JSONObject) jj.get(j);
                 JSONObject player = (JSONObject) obj.get("player");
                 JSONObject birth = (JSONObject) player.get("birth");
                 String d;
@@ -77,14 +76,13 @@ public class TeamController {
                 JSONObject steam0 = (JSONObject) statistics.get(0);
                 JSONObject games = (JSONObject) steam0.get("games");
                 JSONObject goals = (JSONObject) steam0.get("goals");
-                JSONObject team = (JSONObject) steam0.get("team");
                 int g;
                 try {
                     g = goals.getInt("total");
                 } catch (Exception e) {
                     g = 0;
                 }
-                Player p = new Player(player.getString("name"), games.getString("position"), date, this.teamService.getTeamByName(team.getString("name")), g, player.getString("photo"));
+                Player p = new Player(player.getString("name"), games.getString("position"), date, t, g, player.getString("photo"));
                 this.playerService.addPlayer(p);
             }
         }

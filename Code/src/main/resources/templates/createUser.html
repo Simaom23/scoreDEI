@@ -5,7 +5,7 @@
 
 <body>
     <nav th:replace="layout :: nav" />
-    <form method="post" th:action="@{/saveUser/}" th:object="${user}">
+    <form class="create" method="post" th:action="@{/saveUser/}" th:object="${user}">
         <div class="form-group">
             <label for="Name">Name</label>
             <input required type="text" id="name" class="form-control" placeholder="Enter user name" th:field="*{name}">

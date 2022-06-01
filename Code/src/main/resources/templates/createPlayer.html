@@ -5,7 +5,7 @@
 
 <body>
     <nav th:replace="layout :: nav" />
-    <form method="post" th:action="@{/savePlayer}" th:object="${player}">
+    <form class="create" method="post" th:action="@{/savePlayer}" th:object="${player}">
         <div>
             <input type="hidden" th:value="${'https://media.api-sports.io/football/players/105549.png'}"
                 th:attr="name='photo'">

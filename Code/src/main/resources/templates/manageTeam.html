@@ -5,9 +5,13 @@
 
 <body>
     <nav th:replace="layout :: nav" />
-    <form method="post" th:action="@{/saveTeam}" th:object="${team}">
+    <form class="create" method="post" th:action="@{/saveTeam}" th:object="${team}">
         <div>
             <input type="hidden" th:field="*{id}">
+        </div>
+        <div class="form-group">
+            <label for="Logo">Logo</label>
+            <input type="text" id="logo" class="form-control" placeholder="Enter logo url" th:field="*{logo}">
         </div>
         <div class="form-group">
             <label for="Name">Team name</label>
@@ -15,7 +19,7 @@
         </div>
         <button type="submit" class="btn btn-primary">Edit Team</button>
     </form>
-    <form method="post" th:action="@{/deleteTeam}" th:object="${team}">
+    <form class="create" method="post" th:action="@{/deleteTeam}" th:object="${team}">
         <div>
             <input type="hidden" th:field="*{id}">
         </div>

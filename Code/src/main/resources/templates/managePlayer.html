@@ -5,9 +5,10 @@
 
 <body>
     <nav th:replace="layout :: nav" />
-    <form method="post" th:action="@{/savePlayer}" th:object="${player}">
+    <form class="create" method="post" th:action="@{/savePlayer}" th:object="${player}">
         <div>
             <input type="hidden" th:field="*{id}">
+            <input type="hidden" th:field="*{photo}">
         </div>
         <div class="form-group">
             <label for="Name">Name</label>
@@ -38,7 +39,7 @@
         </div>
         <button type="submit" class="btn btn-primary">Edit Player</button>
     </form>
-    <form method="post" th:action="@{/deletePlayer}" th:object="${player}">
+    <form class="create" method="post" th:action="@{/deletePlayer}" th:object="${player}">
         <div>
             <input type="hidden" th:field="*{id}">
         </div>
