@@ -61,14 +61,23 @@ public class PersonController {
 
     @PostMapping("/saveUser")
     public String saveUser(@ModelAttribute Person person) {
-        this.personService.addPerson(person);
-        return "redirect:/listUsers";
+        try {
+            this.personService.addPerson(person);
+            return "redirect:/listUsers";
+        }
+        catch (Exception e) {
+            return "redirect:/createUser";
+        }
     }
 
     @PostMapping("/deleteUser")
     public String deleteUser(@ModelAttribute Person person) {
-        this.personService.deletePerson(person);
-        return "redirect:/listUsers";
+        try {
+            this.personService.deletePerson(person);
+            return "redirect:/listUsers";    
+        } catch (Exception e) {
+            return "redirect:/listUsers";
+        }        
     }
 
     @GetMapping("/listUsers")

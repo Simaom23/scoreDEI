@@ -110,14 +110,23 @@ public class TeamController {
     @PostMapping("/saveTeam")
     public String saveTeam(@ModelAttribute Team team, Model model) {
         model.addAttribute("team", team);
-        this.teamService.addTeam(team);
-        return "redirect:/listTeams";
+        try {
+            this.teamService.addTeam(team);
+            return "redirect:/listTeams";
+        }
+        catch (Exception e) {
+            return "redirect:/createTeam";
+        }
     }
 
     @PostMapping("/deleteTeam")
     public String deleteTeam(@ModelAttribute Team team) {
-        this.teamService.deleteTeam(team);
-        return "redirect:/listTeams";
+        try {
+            this.teamService.deleteTeam(team);
+            return "redirect:/listTeams";            
+        } catch (Exception e) {
+            return "redirect:/listTeams";
+        }
     }
 
     @GetMapping("/listTeams")

@@ -41,14 +41,22 @@ public class PlayerController {
 
     @PostMapping("/savePlayer")
     public String savePlayer(@ModelAttribute Player player) {
-        this.playerService.addPlayer(player);
-        return "redirect:/listPlayers";
+        try {
+            this.playerService.addPlayer(player);
+            return "redirect:/listPlayers";   
+        } catch (Exception e) {
+            return "redirect:/createPlayer";
+        }
     }
 
     @PostMapping("/deletePlayer")
     public String deletePlayer(@ModelAttribute Player player) {
-        this.playerService.deletePlayer(player);
-        return "redirect:/listPlayers";
+        try {
+            this.playerService.deletePlayer(player);
+            return "redirect:/listPlayers";            
+        } catch (Exception e) {
+            return "redirect:/listPlayers";
+        }
     }
 
     @GetMapping("/listPlayers")

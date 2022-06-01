@@ -19,7 +19,7 @@
         </div>
         <button type="submit" class="btn btn-primary">Edit Team</button>
     </form>
-    <form method="post" th:action="@{/deleteTeam}" th:object="${team}">
+    <form class="create" method="post" th:action="@{/deleteTeam}" th:object="${team}">
         <div>
             <input type="hidden" th:field="*{id}">
         </div>

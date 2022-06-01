@@ -45,32 +45,48 @@ public class EventController {
             if (eventType.equals("Game Started")) {
                 if (op.get().getStarted() == false) {
                     game.setStarted(true);
-                    this.gameService.addGame(game);
-                    return "registerOtherEvent";
+                    try {
+                        this.gameService.addGame(game);
+                        return "registerOtherEvent";    
+                    } catch (Exception e) {
+                        return "redirect:/gameStats?id=" + id;
+                    }
                 }
                 return "redirect:/gameStats?id=" + id;
 
             } else if (eventType.equals("Game Ended")) {
                 if (op.get().getEnded() == false) {
                     game.setEnded(true);
-                    this.gameService.addGame(game);
-                    return "registerOtherEvent";
+                    try {
+                        this.gameService.addGame(game);
+                        return "registerOtherEvent";    
+                    } catch (Exception e) {
+                        return "redirect:/gameStats?id=" + id;
+                    }
                 }
                 return "redirect:/gameStats?id=" + id;
 
             } else if (eventType.equals("Game Interrupted")) {
                 if (op.get().getInterrupted() == false) {
                     game.setInterrupted(true);
-                    this.gameService.addGame(game);
-                    return "registerOtherEvent";
+                    try {
+                        this.gameService.addGame(game);
+                        return "registerOtherEvent";    
+                    } catch (Exception e) {
+                        return "redirect:/gameStats?id=" + id;
+                    }
                 }
                 return "redirect:/gameStats?id=" + id;
 
             } else if (eventType.equals("Game Resumed")) {
                 if (op.get().getInterrupted() == true) {
                     game.setInterrupted(false);
-                    this.gameService.addGame(game);
-                    return "registerOtherEvent";
+                    try {
+                        this.gameService.addGame(game);
+                        return "registerOtherEvent";    
+                    } catch (Exception e) {
+                        return "redirect:/gameStats?id=" + id;
+                    }
                 }
                 return "redirect:/gameStats?id=" + id;
 
@@ -94,32 +110,48 @@ public class EventController {
             if (eventType.equals("Game Started")) {
                 if (op.get().getStarted() == false) {
                     game.setStarted(true);
-                    this.gameService.addGame(game);
-                    return "registerOtherEventUser";
+                    try {
+                        this.gameService.addGame(game);
+                        return "registerOtherEventUser";    
+                    } catch (Exception e) {
+                        return "redirect:/gameStatsUser?id=" + id;
+                    }
                 }
                 return "redirect:/gameStatsUser?id=" + id;
 
             } else if (eventType.equals("Game Ended")) {
                 if (op.get().getEnded() == false) {
                     game.setEnded(true);
-                    this.gameService.addGame(game);
-                    return "registerOtherEventUser";
+                    try {
+                        this.gameService.addGame(game);
+                        return "registerOtherEventUser";    
+                    } catch (Exception e) {
+                        return "redirect:/gameStatsUser?id=" + id;
+                    }
                 }
                 return "redirect:/gameStatsUser?id=" + id;
 
             } else if (eventType.equals("Game Interrupted")) {
                 if (op.get().getInterrupted() == false) {
                     game.setInterrupted(true);
-                    this.gameService.addGame(game);
-                    return "registerOtherEventUser";
+                    try {
+                        this.gameService.addGame(game);
+                        return "registerOtherEventUser";    
+                    } catch (Exception e) {
+                        return "redirect:/gameStatsUser?id=" + id;
+                    }
                 }
                 return "redirect:/gameStatsUser?id=" + id;
 
             } else if (eventType.equals("Game Resumed")) {
                 if (op.get().getInterrupted() == true) {
                     game.setInterrupted(false);
-                    this.gameService.addGame(game);
-                    return "registerOtherEventUser";
+                    try {
+                        this.gameService.addGame(game);
+                        return "registerOtherEventUser";    
+                    } catch (Exception e) {
+                        return "redirect:/gameStatsUser?id=" + id;
+                    }
                 }
                 return "redirect:/gameStatsUser?id=" + id;
 

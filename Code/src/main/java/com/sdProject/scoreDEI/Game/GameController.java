@@ -42,14 +42,23 @@ public class GameController {
     @PostMapping("/saveGame")
     public String saveTeam(@ModelAttribute Game game, Model model) {
         model.addAttribute("game", game);
-        this.gameService.addGame(game);
-        return "redirect:/listGames";
+        try {
+            this.gameService.addGame(game);
+            return "redirect:/listGames";    
+        } catch (Exception e) {
+            return "redirect:/createGame";
+        }
+        
     }
 
     @PostMapping("/deleteGame")
     public String deleteGame(@ModelAttribute Game game) {
-        this.gameService.deleteGame(game);
-        return "redirect:/listGames";
+        try {
+            this.gameService.deleteGame(game);
+            return "redirect:/listGames";    
+        } catch (Exception e) {
+            return "redirect:/listGames";
+        }
     }
 
     @GetMapping("/listGames")
