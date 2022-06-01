@@ -2,33 +2,10 @@ package com.sdProject.scoreDEI.Team;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 public interface TeamRepository extends CrudRepository<Team, Integer> {
-    @Transactional
-    @Modifying
-    @Query("UPDATE Team t SET t.games = t.games + 1 WHERE id = :id")
-    void addGames(int id);
-
-    @Transactional
-    @Modifying
-    @Query("UPDATE Team t SET t.wins = t.wins + 1 WHERE id = :id")
-    void addWins(int id);
-
-    @Transactional
-    @Modifying
-    @Query("UPDATE Team t SET t.losses = t.losses + 1 WHERE id = :id")
-    void addLosses(int id);
-
-    @Transactional
-    @Modifying
-    @Query("UPDATE Team t SET t.defeats = t.defeats + 1 WHERE id = :id")
-    void addDefeats(int id);
-
     @Query("SELECT t FROM Team t WHERE t.name = :name")
     Team findByName(String name);
 

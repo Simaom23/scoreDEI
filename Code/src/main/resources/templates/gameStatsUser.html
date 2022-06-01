@@ -19,7 +19,7 @@
         </thead>
     </table>
 
-    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+    <div th:if="${game.ended == false}" class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
         <div class="btn-group" role="group" aria-label="First group">
             <a th:href="@{registerEventUser(id=${game.id}, eventType=${'Game Started'})}" class="btn btn-primary">Game
                 Started</a>

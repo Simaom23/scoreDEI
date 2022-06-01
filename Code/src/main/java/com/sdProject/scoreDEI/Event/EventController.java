@@ -37,34 +37,39 @@ public class EventController {
             @RequestParam(name = "eventType", required = true) String eventType, Model model) {
         Optional<Game> op = this.gameService.getGame(id);
         if (op.isPresent()) {
+            Game game = op.get();
             model.addAttribute("event", new Event());
-            model.addAttribute("game", op.get());
+            model.addAttribute("game", game);
             model.addAttribute("eventType", eventType);
 
             if (eventType.equals("Game Started")) {
                 if (op.get().getStarted() == false) {
-                    op.get().setStarted(true);
+                    game.setStarted(true);
+                    this.gameService.addGame(game);
                     return "registerOtherEvent";
                 }
                 return "redirect:/gameStats?id=" + id;
 
             } else if (eventType.equals("Game Ended")) {
                 if (op.get().getEnded() == false) {
-                    op.get().setEnded(true);
+                    game.setEnded(true);
+                    this.gameService.addGame(game);
                     return "registerOtherEvent";
                 }
                 return "redirect:/gameStats?id=" + id;
 
             } else if (eventType.equals("Game Interrupted")) {
                 if (op.get().getInterrupted() == false) {
-                    op.get().setInterrupted(true);
+                    game.setInterrupted(true);
+                    this.gameService.addGame(game);
                     return "registerOtherEvent";
                 }
                 return "redirect:/gameStats?id=" + id;
 
             } else if (eventType.equals("Game Resumed")) {
                 if (op.get().getInterrupted() == true) {
-                    op.get().setInterrupted(false);
+                    game.setInterrupted(false);
+                    this.gameService.addGame(game);
                     return "registerOtherEvent";
                 }
                 return "redirect:/gameStats?id=" + id;
@@ -81,34 +86,39 @@ public class EventController {
             @RequestParam(name = "eventType", required = true) String eventType, Model model) {
         Optional<Game> op = this.gameService.getGame(id);
         if (op.isPresent()) {
+            Game game = op.get();
             model.addAttribute("event", new Event());
-            model.addAttribute("game", op.get());
+            model.addAttribute("game", game);
             model.addAttribute("eventType", eventType);
 
             if (eventType.equals("Game Started")) {
                 if (op.get().getStarted() == false) {
-                    op.get().setStarted(true);
+                    game.setStarted(true);
+                    this.gameService.addGame(game);
                     return "registerOtherEventUser";
                 }
                 return "redirect:/gameStatsUser?id=" + id;
 
             } else if (eventType.equals("Game Ended")) {
                 if (op.get().getEnded() == false) {
-                    op.get().setEnded(true);
+                    game.setEnded(true);
+                    this.gameService.addGame(game);
                     return "registerOtherEventUser";
                 }
                 return "redirect:/gameStatsUser?id=" + id;
 
             } else if (eventType.equals("Game Interrupted")) {
                 if (op.get().getInterrupted() == false) {
-                    op.get().setInterrupted(true);
+                    game.setInterrupted(true);
+                    this.gameService.addGame(game);
                     return "registerOtherEventUser";
                 }
                 return "redirect:/gameStatsUser?id=" + id;
 
             } else if (eventType.equals("Game Resumed")) {
                 if (op.get().getInterrupted() == true) {
-                    op.get().setInterrupted(false);
+                    game.setInterrupted(false);
+                    this.gameService.addGame(game);
                     return "registerOtherEventUser";
                 }
                 return "redirect:/gameStatsUser?id=" + id;
@@ -123,25 +133,30 @@ public class EventController {
     @PostMapping("/saveEvent")
     public String saveEvent(@ModelAttribute Event event) {
         if (event.getEventType().equals("Goal")) {
-            this.playerService.addGoal(event.getPlayer().getId());
+            event.getPlayer().setGoals(event.getPlayer().getGoals() + 1);
+            this.playerService.addPlayer(event.getPlayer());
         } else if (event.getEventType().equals("Game Ended")) {
             Team homeTeam = event.getGame().getHomeTeam();
             Team awayTeam = event.getGame().getAwayTeam();
-            this.teamService.addGames(homeTeam.getId());
-            this.teamService.addGames(awayTeam.getId());
+            homeTeam.setGames(homeTeam.getGames() + 1);
+            awayTeam.setGames(awayTeam.getGames() + 1);
             int homeGoals = this.gameService.getTeamGoals(homeTeam);
             int awayGoals = this.gameService.getTeamGoals(awayTeam);
             if (homeGoals > awayGoals) {
-                this.teamService.addWins(homeTeam.getId());
-                this.teamService.addLosses(awayTeam.getId());
+                homeTeam.setWins(homeTeam.getWins() + 1);
+                awayTeam.setLosses(awayTeam.getLosses() + 1);
             } else if (homeGoals < awayGoals) {
-                this.teamService.addLosses(homeTeam.getId());
-                this.teamService.addWins(awayTeam.getId());
+                homeTeam.setLosses(homeTeam.getLosses() + 1);
+                awayTeam.setWins(awayTeam.getWins() + 1);
             } else {
-                this.teamService.addDefeats(homeTeam.getId());
-                this.teamService.addDefeats(awayTeam.getId());
+                homeTeam.setDefeats(homeTeam.getDefeats() + 1);
+                awayTeam.setDefeats(awayTeam.getDefeats() + 1);
             }
+
+            this.teamService.addTeam(homeTeam);
+            this.teamService.addTeam(awayTeam);
         }
+
         this.eventService.addEvent(event);
 
         return "redirect:/gameStats?id=" + event.getGame().getId();
@@ -150,25 +165,30 @@ public class EventController {
     @PostMapping("/saveEventUser")
     public String saveEventUser(@ModelAttribute Event event) {
         if (event.getEventType().equals("Goal")) {
-            this.playerService.addGoal(event.getPlayer().getId());
+            event.getPlayer().setGoals(event.getPlayer().getGoals() + 1);
+            this.playerService.addPlayer(event.getPlayer());
         } else if (event.getEventType().equals("Game Ended")) {
             Team homeTeam = event.getGame().getHomeTeam();
             Team awayTeam = event.getGame().getAwayTeam();
-            this.teamService.addGames(homeTeam.getId());
-            this.teamService.addGames(awayTeam.getId());
+            homeTeam.setGames(homeTeam.getGames() + 1);
+            awayTeam.setGames(awayTeam.getGames() + 1);
             int homeGoals = this.gameService.getTeamGoals(homeTeam);
             int awayGoals = this.gameService.getTeamGoals(awayTeam);
             if (homeGoals > awayGoals) {
-                this.teamService.addWins(homeTeam.getId());
-                this.teamService.addLosses(awayTeam.getId());
+                homeTeam.setWins(homeTeam.getWins() + 1);
+                awayTeam.setLosses(awayTeam.getLosses() + 1);
             } else if (homeGoals < awayGoals) {
-                this.teamService.addLosses(homeTeam.getId());
-                this.teamService.addWins(awayTeam.getId());
+                homeTeam.setLosses(homeTeam.getLosses() + 1);
+                awayTeam.setWins(awayTeam.getWins() + 1);
             } else {
-                this.teamService.addDefeats(homeTeam.getId());
-                this.teamService.addDefeats(awayTeam.getId());
+                homeTeam.setDefeats(homeTeam.getDefeats() + 1);
+                awayTeam.setDefeats(awayTeam.getDefeats() + 1);
             }
+
+            this.teamService.addTeam(homeTeam);
+            this.teamService.addTeam(awayTeam);
         }
+
         this.eventService.addEvent(event);
 
         return "redirect:/gameStatsUser?id=" + event.getGame().getId();

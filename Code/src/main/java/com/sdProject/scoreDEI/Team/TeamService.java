@@ -45,10 +45,6 @@ public class TeamService {
         return teams;
     }
 
-    public void addGames(int id) {
-        teamRepository.addGames(id);
-    }
-
     public List<Team> getGamesDescending() {
         List<Team> teams = teamRepository.getGamesDescending();
         return teams;
@@ -57,10 +53,6 @@ public class TeamService {
     public List<Team> getGamesAscending() {
         List<Team> teams = teamRepository.getGamesAscending();
         return teams;
-    }
-
-    public void addWins(int id) {
-        teamRepository.addWins(id);
     }
 
     public List<Team> getWinsDescending() {
@@ -73,10 +65,6 @@ public class TeamService {
         return teams;
     }
 
-    public void addLosses(int id) {
-        teamRepository.addLosses(id);
-    }
-
     public List<Team> getLossesDescending() {
         List<Team> teams = teamRepository.getLossesDescending();
         return teams;
@@ -85,10 +73,6 @@ public class TeamService {
     public List<Team> getLossesAscending() {
         List<Team> teams = teamRepository.getLossesAscending();
         return teams;
-    }
-
-    public void addDefeats(int id) {
-        teamRepository.addGames(id);
     }
 
     public List<Team> getDefeatsDescending() {

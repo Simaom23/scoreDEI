@@ -40,7 +40,6 @@ public class GameService {
 
     public List<Game> getPresentGames() {
         List<Game> games = gameRepository.getPresentGames();
-        System.out.println(games);
         return games;
     }
 

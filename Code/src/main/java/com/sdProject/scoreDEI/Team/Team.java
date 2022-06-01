@@ -73,7 +73,7 @@ public class Team {
         return wins;
     }
 
-    public void setwins(int wins) {
+    public void setWins(int wins) {
         this.wins = wins;
     }
 
