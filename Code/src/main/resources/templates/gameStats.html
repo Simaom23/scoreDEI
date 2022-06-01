@@ -11,10 +11,14 @@
                 <th scope="col"><img th:src="${game.homeTeam.logo}" alt="logo" style="width:30px; height:30px;"></th>
                 <th scope="col" th:text="${game.homeTeam.name}">Home Team</th>
                 <th scope="col" th:text="${homeGoals}">Home Goals</th>
-                <th scope="col" th:text="${game.date + ' ' + game.time}">Date and Time</th>
+                <div th:switch="${gameTime}">
+                    <th th:case="-1" scope="col" th:text="${game.date + ' ' + game.time}">Date and Time</th>
+                    <th th:case="*" scope="col" th:text="${gameTime + ''''}" style="color:#FF0000;">Game Time</th>
+                </div>
                 <th scope="col" th:text="${awayGoals}">Away Goals</th>
                 <th scope="col" th:text="${game.awayTeam.name}">Away Team</th>
-                <th scope="col"><img th:src="${game.awayTeam.logo}" alt="logo" style="width:30px; height:30px;"></th>
+                <th scope="col"><img th:src="${game.awayTeam.logo}" alt="logo" style="width:30px; height:30px;">
+                </th>
             </tr>
         </thead>
     </table>
