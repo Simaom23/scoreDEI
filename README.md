@@ -50,6 +50,8 @@ Por fim os **Admin** podem efetuar todas as operações anterios mais as seguint
   ./mvnw spring-boot:run
 ```
 
+**Ficheiro WAR (Executar dentro do container):**
+
 - Existe, também, um ficheiro WAR no seguinte diretório:
 
 ```
