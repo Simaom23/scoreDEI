@@ -4,13 +4,15 @@ import java.sql.Date;
 import java.sql.Time;
 import java.util.List;
 import java.util.ArrayList;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import com.sdProject.scoreDEI.Event.Event;
 import com.sdProject.scoreDEI.Team.Team;
@@ -22,13 +24,15 @@ public class Game {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Team homeTeam;
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Team awayTeam;
     private String location;
     private Date date;
     private Time time;
-    @OneToMany(mappedBy = "game", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "game")
     private List<Event> events;
     private boolean ended;
     private boolean interrupted;

@@ -3,7 +3,6 @@ package com.sdProject.scoreDEI.Team;
 import java.util.List;
 import java.util.ArrayList;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +18,7 @@ public class Team {
     private int id;
     @Column(unique = true)
     private String name;
-    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "team")
     private List<Player> squad;
     private int games, wins, defeats, losses;
     private String logo;

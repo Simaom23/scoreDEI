@@ -7,6 +7,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.sdProject.scoreDEI.Team.Team;
 
 @Entity
@@ -17,6 +21,7 @@ public class Player {
     private String name, position, photo;
     Date birthDate;
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Team team;
     private int goals;
 
