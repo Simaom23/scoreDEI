@@ -1,7 +1,11 @@
 package com.sdProject.scoreDEI.Views;
 
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
 
+import com.sdProject.scoreDEI.Event.Event;
 import com.sdProject.scoreDEI.Game.Game;
 import com.sdProject.scoreDEI.Game.GameService;
 
@@ -39,9 +43,17 @@ public class ViewsController {
         Optional<Game> op = this.gameService.getGameById(id);
         if (op.isPresent()) {
             Game game = op.get();
+            List<Event> events = game.getEvents();
+            Collections.sort(events, new Comparator<Event>() {
+                @Override
+                public int compare(Event e1, Event e2) {
+                    return e1.getDate().compareTo(e2.getDate());
+                }
+            });
             model.addAttribute("game", game);
             model.addAttribute("homeGoals", this.gameService.getTeamGoals(game.getHomeTeam()));
             model.addAttribute("awayGoals", this.gameService.getTeamGoals(game.getAwayTeam()));
+            model.addAttribute("events", events);
             return "gameStats";
         } else {
             return "redirect:/homepage";

@@ -5,6 +5,7 @@
 
 <body>
     <nav th:replace="layout :: nav" />
+    <p class="h5" th:text="${'Event Type - ' + eventType}"></p>
     <form method="post" th:action="@{/saveEvent}" th:object="${event}">
         <div>
             <input type="hidden" th:value="${eventType}" th:attr="name='eventType'">
@@ -29,10 +30,8 @@
                 <option th:each="player : ${game.awayTeam.squad}" th:value="${{player.id}}" th:text="${player.name}" />
             </select>
         </div>
-        <div class=" form-group">
-            <label for="Date">Date</label>
-            <input disabled required type="date" id="date" th:value="@{game.date}" th:text="@{game.date}"
-                class="form-control" placeholder="Date of event" th:field="*{date}">
+        <div>
+            <input type="hidden" th:value="${game.date}" th:attr="name='date'">
         </div>
         <div class=" form-group">
             <label for="Time">Time</label>

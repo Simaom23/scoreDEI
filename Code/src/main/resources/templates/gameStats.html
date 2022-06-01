@@ -52,7 +52,7 @@
                 <th scope="col">Away Team</th>
             </tr>
         </thead>
-        <tbody th:each="event : ${game.events}" th:switch="${event.team}">
+        <tbody th:each="event : ${events}" th:switch="${event.team}">
             <tr th:case="${game.homeTeam}">
                 <td th:text="${event.time + ' ' + event.eventType + ' - ' + event.player.name}">Event</td>
                 <td></td>

@@ -6,6 +6,10 @@
 <body>
     <nav th:replace="layout :: nav" />
     <form method="post" th:action="@{/savePlayer}" th:object="${player}">
+        <div>
+            <input type="hidden" th:value="${'https://media.api-sports.io/football/players/105549.png'}"
+                th:attr="name='photo'">
+        </div>
         <div class="form-group">
             <label for="Name">Name</label>
             <input required type="text" id="name" class="form-control" placeholder="Enter player name"
