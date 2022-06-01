@@ -23,6 +23,7 @@ Por fim os **Admin** podem efetuar todas as operações anterios mais as seguint
 - Criar/Gerir Equipas
 - Criar/Gerir Jogadores
 - Criar/Gerir Jogos de Futebols
+- Obter dados da API (api-sports.io)
 
 ## Executar o scoreDei:
 
@@ -63,3 +64,21 @@ Por fim os **Admin** podem efetuar todas as operações anterios mais as seguint
 ```
   java -jar scoreDEI-0.0.1-SNAPSHOT.war
 ```
+
+## Usar o scoreDei:
+
+O scoreDei é muito simples de usar, tal como outro website.
+
+- Inicialmente estarão dois utilizadores na base de dados, um admin e um user:
+
+```
+  #Admin
+  Email: admin@admin
+  Password: admin
+
+  # User
+  Email: user@user
+  Password: user
+```
+
+- Através das credenciais dadas acima será possível começar a utilizar a aplicação da maneira que entender, sendo que cada template está conectado a outro de maneira uniforme o que torna desnecessário usar os URL's.
